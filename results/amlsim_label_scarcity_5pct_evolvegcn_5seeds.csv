@@ -1,0 +1,2 @@
+﻿model,n_seeds,auc_mean,auc_std,ap_mean,ap_std,f1_mean,f1_std,p_mean,p_std,r_mean,r_std,p100_mean,p100_std,w1_mean,w1_std,w2_mean,w2_std,w3_mean,w3_std
+evolvegcn,5,0.9336,0.0028,0.4098,0.0164,0.4804,0.0377,0.4292,0.0305,0.5734,0.1292,0.4360,0.0575,0.3345,0.0150,0.3564,0.0099,0.5797,0.0658

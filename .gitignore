@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# datasets (downloaded automatically or placed locally)
+Data/
+data/
+*.archive
+*.zip
+# experiment outputs
+TGM-Lite_实验结果_*.csv
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

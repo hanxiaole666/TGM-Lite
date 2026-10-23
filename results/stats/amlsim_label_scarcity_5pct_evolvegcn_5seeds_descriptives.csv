@@ -1,0 +1,3 @@
+﻿experiment,metric,model,n,mean,sd,ci_lo,ci_hi
+amlsim_label_scarcity_5pct_evolvegcn_5seeds,ap,evolvegcn,5,0.40982,0.018334993864193145,0.3870540982115444,0.43258590178845563
+amlsim_label_scarcity_5pct_evolvegcn_5seeds,f1,evolvegcn,5,0.48034,0.042149531432745475,0.4280044442788019,0.5326755557211981

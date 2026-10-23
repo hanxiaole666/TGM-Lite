@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "TGM-Lite: A Drift-Gated Selective State-Space Temporal Graph Network for Stable Money Laundering Detection under Concept Drift"
+authors:
+  - family-names: Han
+    given-names: Xiaole
+    orcid: https://orcid.org/0009-0009-9611-2368
+    affiliation: "Business School, Qilu Institute of Technology, Jinan, Shandong 250200, China"
+    email: hanxiaoleop@163.com
+year: 2026
+license: MIT
