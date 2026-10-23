@@ -1,0 +1,1211 @@
+# smoke test (~1 min, CPU)
+s_date-time:周四 2026/10/15-13:11:16.04
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data synthetic --models all --epochs 3 --pretrain_epochs 1
+[环境] device=cuda  torch=2.2.1
+[划分] 训练 t=1-34 | 验证 t=35-39 | 测试 t=40-49  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+[续跑] 检测到 TGM-Lite_审计结果_supervised_synthetic.csv 已有 3 个组合, 自动跳过
+
+>>> 跳过 evolvegcn_full (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+
+>>> 跳过 dysat (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+
+>>> 跳过 graphmamba (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+[汇总] 共 3 行 (TGM-Lite_审计结果_supervised_synthetic.csv)
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+evolvegcn_full     1       0.0000±0.0000   0.0000  1 [42]        -
+dysat              1       0.1333±0.0000   0.1333  1 [42]        -
+graphmamba         1       0.7500±0.0000   0.7500    0 []        -
+==============================================================================
+e_date-time:周四 2026/10/15-13:11:21.40
+# full 10-seed audit on AMLSim
+s_date-time:周四 2026/10/15-13:11:21.40
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data amlsim --models evolvegcn_full,dysat,graphmamba --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _ext10
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.2213
+  [预训练] epoch 2/5  recon_loss=4.0381
+  [预训练] epoch 3/5  recon_loss=3.9916
+  [预训练] epoch 4/5  recon_loss=3.9788
+  [预训练] epoch 5/5  recon_loss=3.9331
+  epoch   1  loss=3.3782  val_AP=0.0290  (best@1)
+  epoch  20  loss=1.5510  val_AP=0.1600  (best@17)
+  epoch  40  loss=1.4924  val_AP=0.1137  (best@17)
+  epoch  60  loss=1.3837  val_AP=0.1154  (best@17)
+  epoch  80  loss=1.2472  val_AP=0.1187  (best@17)
+  epoch 100  loss=1.1993  val_AP=0.1217  (best@17)
+  [结果] evolvegcn_full: AP=0.3058 F1=0.3931 w3=0.4867 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1427
+  [预训练] epoch 2/5  recon_loss=3.9268
+  [预训练] epoch 3/5  recon_loss=3.7382
+  [预训练] epoch 4/5  recon_loss=3.5763
+  [预训练] epoch 5/5  recon_loss=3.4079
+  epoch   1  loss=3.6119  val_AP=0.0391  (best@1)
+  epoch  20  loss=1.3469  val_AP=0.2121  (best@20)
+  epoch  40  loss=1.2765  val_AP=0.2261  (best@40)
+  epoch  60  loss=1.2181  val_AP=0.2401  (best@60)
+  epoch  80  loss=1.1410  val_AP=0.2955  (best@80)
+  epoch 100  loss=1.0336  val_AP=0.2856  (best@82)
+  [结果] dysat: AP=0.4245 F1=0.4846 w3=0.6360 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1732
+  [预训练] epoch 2/5  recon_loss=4.0012
+  [预训练] epoch 3/5  recon_loss=3.8868
+  [预训练] epoch 4/5  recon_loss=3.7996
+  [预训练] epoch 5/5  recon_loss=3.6802
+  epoch   1  loss=3.3515  val_AP=0.0463  (best@1)
+  epoch  20  loss=1.4724  val_AP=0.1948  (best@7)
+  epoch  40  loss=1.3081  val_AP=0.2063  (best@7)
+  epoch  60  loss=1.2250  val_AP=0.3197  (best@49)
+  epoch  80  loss=1.1697  val_AP=0.3125  (best@72)
+  epoch 100  loss=1.1122  val_AP=0.0857  (best@72)
+  [结果] graphmamba: AP=0.3896 F1=0.4550 w3=0.5300 params=23,512  [已落盘]
+
+######################################################################
+# 种子 43 (2/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1547
+  [预训练] epoch 2/5  recon_loss=4.0063
+  [预训练] epoch 3/5  recon_loss=3.9597
+  [预训练] epoch 4/5  recon_loss=3.9399
+  [预训练] epoch 5/5  recon_loss=3.9342
+  epoch   1  loss=3.1778  val_AP=0.0235  (best@1)
+  epoch  20  loss=1.5572  val_AP=0.0604  (best@12)
+  epoch  40  loss=1.4947  val_AP=0.0937  (best@12)
+  epoch  60  loss=1.4611  val_AP=0.1167  (best@12)
+  epoch  80  loss=1.4142  val_AP=0.0747  (best@12)
+  epoch 100  loss=1.3758  val_AP=0.0326  (best@12)
+  [结果] evolvegcn_full: AP=0.2485 F1=0.3503 w3=0.4932 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1125
+  [预训练] epoch 2/5  recon_loss=3.8945
+  [预训练] epoch 3/5  recon_loss=3.6986
+  [预训练] epoch 4/5  recon_loss=3.5384
+  [预训练] epoch 5/5  recon_loss=3.4035
+  epoch   1  loss=3.6765  val_AP=0.0403  (best@1)
+  epoch  20  loss=1.3263  val_AP=0.1874  (best@20)
+  epoch  40  loss=1.2721  val_AP=0.1974  (best@40)
+  epoch  60  loss=1.1841  val_AP=0.2082  (best@60)
+  epoch  80  loss=1.1031  val_AP=0.2408  (best@80)
+  epoch 100  loss=1.0243  val_AP=0.2579  (best@100)
+  [结果] dysat: AP=0.6196 F1=0.3948 w3=0.5283 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1107
+  [预训练] epoch 2/5  recon_loss=3.9410
+  [预训练] epoch 3/5  recon_loss=3.8129
+  [预训练] epoch 4/5  recon_loss=3.7178
+  [预训练] epoch 5/5  recon_loss=3.6327
+  epoch   1  loss=3.3500  val_AP=0.0349  (best@1)
+  epoch  20  loss=1.4516  val_AP=0.1964  (best@4)
+  epoch  40  loss=1.2928  val_AP=0.2558  (best@40)
+  epoch  60  loss=1.2133  val_AP=0.3759  (best@60)
+  epoch  80  loss=1.1678  val_AP=0.4093  (best@80)
+  epoch 100  loss=1.1173  val_AP=0.4042  (best@92)
+  [结果] graphmamba: AP=0.5901 F1=0.5804 w3=0.6972 params=23,512  [已落盘]
+
+######################################################################
+# 种子 44 (3/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.2442
+  [预训练] epoch 2/5  recon_loss=4.0588
+  [预训练] epoch 3/5  recon_loss=3.9968
+  [预训练] epoch 4/5  recon_loss=4.0326
+  [预训练] epoch 5/5  recon_loss=3.9768
+  epoch   1  loss=3.7342  val_AP=0.0253  (best@1)
+  epoch  20  loss=1.6036  val_AP=0.0206  (best@11)
+  epoch  40  loss=1.5190  val_AP=0.0209  (best@11)
+  epoch  60  loss=1.4786  val_AP=0.0202  (best@11)
+  epoch  80  loss=1.4377  val_AP=0.0199  (best@11)
+  epoch 100  loss=1.2973  val_AP=0.0195  (best@11)
+  [结果] evolvegcn_full: AP=0.0657 F1=0.1361 w3=0.2362 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.1178
+  [预训练] epoch 2/5  recon_loss=3.9336
+  [预训练] epoch 3/5  recon_loss=3.7269
+  [预训练] epoch 4/5  recon_loss=3.6105
+  [预训练] epoch 5/5  recon_loss=3.4190
+  epoch   1  loss=3.4405  val_AP=0.0562  (best@1)
+  epoch  20  loss=1.3439  val_AP=0.2173  (best@20)
+  epoch  40  loss=1.2781  val_AP=0.2244  (best@39)
+  epoch  60  loss=1.1941  val_AP=0.2345  (best@60)
+  epoch  80  loss=1.0896  val_AP=0.2932  (best@80)
+  epoch 100  loss=1.0074  val_AP=0.3104  (best@99)
+  [结果] dysat: AP=0.3896 F1=0.4478 w3=0.6180 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0903
+  [预训练] epoch 2/5  recon_loss=3.9772
+  [预训练] epoch 3/5  recon_loss=3.8525
+  [预训练] epoch 4/5  recon_loss=3.8148
+  [预训练] epoch 5/5  recon_loss=3.6829
+  epoch   1  loss=3.4467  val_AP=0.0605  (best@1)
+  epoch  20  loss=1.4398  val_AP=0.2037  (best@6)
+  epoch  40  loss=1.2969  val_AP=0.2158  (best@40)
+  epoch  60  loss=1.2219  val_AP=0.3639  (best@60)
+  epoch  80  loss=1.1823  val_AP=0.4023  (best@80)
+  epoch 100  loss=1.1376  val_AP=0.4251  (best@97)
+  [结果] graphmamba: AP=0.5783 F1=0.5758 w3=0.6903 params=23,512  [已落盘]
+
+######################################################################
+# 种子 45 (4/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.3097
+  [预训练] epoch 2/5  recon_loss=4.0475
+  [预训练] epoch 3/5  recon_loss=4.0056
+  [预训练] epoch 4/5  recon_loss=4.0142
+  [预训练] epoch 5/5  recon_loss=3.9857
+  epoch   1  loss=3.9196  val_AP=0.0141  (best@1)
+  epoch  20  loss=1.5462  val_AP=0.0553  (best@13)
+  epoch  40  loss=1.4881  val_AP=0.0355  (best@13)
+  epoch  60  loss=1.3440  val_AP=0.0541  (best@13)
+  epoch  80  loss=1.2431  val_AP=0.0647  (best@13)
+  epoch 100  loss=1.2086  val_AP=0.0514  (best@13)
+  [结果] evolvegcn_full: AP=0.2319 F1=0.3461 w3=0.4624 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.0438
+  [预训练] epoch 2/5  recon_loss=3.8305
+  [预训练] epoch 3/5  recon_loss=3.6603
+  [预训练] epoch 4/5  recon_loss=3.5194
+  [预训练] epoch 5/5  recon_loss=3.3500
+  epoch   1  loss=3.7056  val_AP=0.0436  (best@1)
+  epoch  20  loss=1.3389  val_AP=0.2078  (best@20)
+  epoch  40  loss=1.2753  val_AP=0.2211  (best@40)
+  epoch  60  loss=1.2071  val_AP=0.2391  (best@60)
+  epoch  80  loss=1.0977  val_AP=0.2839  (best@80)
+  epoch 100  loss=1.0051  val_AP=0.3141  (best@100)
+  [结果] dysat: AP=0.3441 F1=0.4797 w3=0.6683 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1469
+  [预训练] epoch 2/5  recon_loss=3.9864
+  [预训练] epoch 3/5  recon_loss=3.8891
+  [预训练] epoch 4/5  recon_loss=3.8218
+  [预训练] epoch 5/5  recon_loss=3.7132
+  epoch   1  loss=3.2776  val_AP=0.0627  (best@1)
+  epoch  20  loss=1.4504  val_AP=0.2042  (best@20)
+  epoch  40  loss=1.3217  val_AP=0.2140  (best@40)
+  epoch  60  loss=1.2104  val_AP=0.3530  (best@60)
+  epoch  80  loss=1.1602  val_AP=0.3946  (best@79)
+  epoch 100  loss=1.1110  val_AP=0.2910  (best@81)
+  [结果] graphmamba: AP=0.5548 F1=0.5486 w3=0.6595 params=23,512  [已落盘]
+
+######################################################################
+# 种子 46 (5/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1684
+  [预训练] epoch 2/5  recon_loss=4.0182
+  [预训练] epoch 3/5  recon_loss=4.0057
+  [预训练] epoch 4/5  recon_loss=3.9630
+  [预训练] epoch 5/5  recon_loss=3.9973
+  epoch   1  loss=3.6120  val_AP=0.0276  (best@1)
+  epoch  20  loss=1.5781  val_AP=0.0944  (best@11)
+  epoch  40  loss=1.4951  val_AP=0.1151  (best@11)
+  epoch  60  loss=1.4535  val_AP=0.1265  (best@11)
+  epoch  80  loss=1.4116  val_AP=0.1329  (best@11)
+  epoch 100  loss=1.3739  val_AP=0.0898  (best@83)
+  [结果] evolvegcn_full: AP=0.1438 F1=0.1722 w3=0.2300 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1016
+  [预训练] epoch 2/5  recon_loss=3.8747
+  [预训练] epoch 3/5  recon_loss=3.7150
+  [预训练] epoch 4/5  recon_loss=3.5321
+  [预训练] epoch 5/5  recon_loss=3.4184
+  epoch   1  loss=3.1802  val_AP=0.0818  (best@1)
+  epoch  20  loss=1.3271  val_AP=0.2167  (best@6)
+  epoch  40  loss=1.2780  val_AP=0.2277  (best@35)
+  epoch  60  loss=1.2044  val_AP=0.2399  (best@60)
+  epoch  80  loss=1.0918  val_AP=0.3209  (best@80)
+  epoch 100  loss=1.0108  val_AP=0.3689  (best@100)
+  [结果] dysat: AP=0.4659 F1=0.1188 w3=0.0862 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1132
+  [预训练] epoch 2/5  recon_loss=3.9470
+  [预训练] epoch 3/5  recon_loss=3.8561
+  [预训练] epoch 4/5  recon_loss=3.7351
+  [预训练] epoch 5/5  recon_loss=3.6844
+  epoch   1  loss=3.6270  val_AP=0.0413  (best@1)
+  epoch  20  loss=1.4719  val_AP=0.2048  (best@6)
+  epoch  40  loss=1.3352  val_AP=0.2017  (best@26)
+  epoch  60  loss=1.2402  val_AP=0.2964  (best@60)
+  epoch  80  loss=1.1619  val_AP=0.3918  (best@80)
+  epoch 100  loss=1.1085  val_AP=0.1346  (best@81)
+  [结果] graphmamba: AP=0.5608 F1=0.5466 w3=0.6680 params=23,512  [已落盘]
+
+######################################################################
+# 种子 47 (6/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1204
+  [预训练] epoch 2/5  recon_loss=3.9874
+  [预训练] epoch 3/5  recon_loss=3.9684
+  [预训练] epoch 4/5  recon_loss=3.9418
+  [预训练] epoch 5/5  recon_loss=3.9477
+  epoch   1  loss=3.5253  val_AP=0.0116  (best@1)
+  epoch  20  loss=1.5808  val_AP=0.0153  (best@10)
+  epoch  40  loss=1.5319  val_AP=0.0180  (best@10)
+  epoch  60  loss=1.3544  val_AP=0.0284  (best@10)
+  epoch  80  loss=1.2630  val_AP=0.0470  (best@10)
+  epoch 100  loss=1.2242  val_AP=0.0767  (best@10)
+  [结果] evolvegcn_full: AP=0.1903 F1=0.3113 w3=0.4576 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1272
+  [预训练] epoch 2/5  recon_loss=3.9001
+  [预训练] epoch 3/5  recon_loss=3.7253
+  [预训练] epoch 4/5  recon_loss=3.5544
+  [预训练] epoch 5/5  recon_loss=3.4303
+  epoch   1  loss=3.7361  val_AP=0.0891  (best@1)
+  epoch  20  loss=1.3335  val_AP=0.2166  (best@18)
+  epoch  40  loss=1.2782  val_AP=0.2272  (best@40)
+  epoch  60  loss=1.2107  val_AP=0.2365  (best@60)
+  epoch  80  loss=1.1140  val_AP=0.2650  (best@80)
+  epoch 100  loss=1.0271  val_AP=0.2978  (best@100)
+  [结果] dysat: AP=0.3159 F1=0.4379 w3=0.6112 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.0984
+  [预训练] epoch 2/5  recon_loss=3.9218
+  [预训练] epoch 3/5  recon_loss=3.8232
+  [预训练] epoch 4/5  recon_loss=3.7225
+  [预训练] epoch 5/5  recon_loss=3.6528
+  epoch   1  loss=3.3633  val_AP=0.0178  (best@1)
+  epoch  20  loss=1.4518  val_AP=0.2010  (best@6)
+  epoch  40  loss=1.2965  val_AP=0.2188  (best@6)
+  epoch  60  loss=1.2289  val_AP=0.3242  (best@55)
+  epoch  80  loss=1.1685  val_AP=0.3963  (best@80)
+  epoch 100  loss=1.1223  val_AP=0.4097  (best@97)
+  [结果] graphmamba: AP=0.5801 F1=0.5708 w3=0.6867 params=23,512  [已落盘]
+
+######################################################################
+# 种子 48 (7/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1546
+  [预训练] epoch 2/5  recon_loss=4.0581
+  [预训练] epoch 3/5  recon_loss=4.0187
+  [预训练] epoch 4/5  recon_loss=3.9805
+  [预训练] epoch 5/5  recon_loss=3.9675
+  epoch   1  loss=3.0977  val_AP=0.0199  (best@1)
+  epoch  20  loss=1.5744  val_AP=0.0447  (best@10)
+  epoch  40  loss=1.5314  val_AP=0.0475  (best@10)
+  epoch  60  loss=1.4876  val_AP=0.0469  (best@10)
+  epoch  80  loss=1.4437  val_AP=0.0450  (best@10)
+  epoch 100  loss=1.4076  val_AP=0.0313  (best@10)
+  [结果] evolvegcn_full: AP=0.1883 F1=0.2734 w3=0.3872 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0944
+  [预训练] epoch 2/5  recon_loss=3.9266
+  [预训练] epoch 3/5  recon_loss=3.7317
+  [预训练] epoch 4/5  recon_loss=3.5467
+  [预训练] epoch 5/5  recon_loss=3.3954
+  epoch   1  loss=3.2337  val_AP=0.0796  (best@1)
+  epoch  20  loss=1.3307  val_AP=0.2210  (best@20)
+  epoch  40  loss=1.2713  val_AP=0.2293  (best@40)
+  epoch  60  loss=1.2009  val_AP=0.2370  (best@58)
+  epoch  80  loss=1.0970  val_AP=0.3355  (best@80)
+  epoch 100  loss=1.0054  val_AP=0.3717  (best@97)
+  [结果] dysat: AP=0.5854 F1=0.5105 w3=0.6526 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1624
+  [预训练] epoch 2/5  recon_loss=4.0509
+  [预训练] epoch 3/5  recon_loss=3.9390
+  [预训练] epoch 4/5  recon_loss=3.8309
+  [预训练] epoch 5/5  recon_loss=3.7464
+  epoch   1  loss=3.5751  val_AP=0.0705  (best@1)
+  epoch  20  loss=1.4580  val_AP=0.2068  (best@7)
+  epoch  40  loss=1.3107  val_AP=0.1980  (best@25)
+  epoch  60  loss=1.2450  val_AP=0.2491  (best@60)
+  epoch  80  loss=1.1796  val_AP=0.3065  (best@76)
+  epoch 100  loss=1.1271  val_AP=0.0531  (best@82)
+  [结果] graphmamba: AP=0.3329 F1=0.4259 w3=0.5306 params=23,512  [已落盘]
+
+######################################################################
+# 种子 49 (8/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1004
+  [预训练] epoch 2/5  recon_loss=4.0056
+  [预训练] epoch 3/5  recon_loss=4.0120
+  [预训练] epoch 4/5  recon_loss=3.9773
+  [预训练] epoch 5/5  recon_loss=3.9699
+  epoch   1  loss=3.4549  val_AP=0.0104  (best@1)
+  epoch  20  loss=1.6029  val_AP=0.0605  (best@13)
+  epoch  40  loss=1.4447  val_AP=0.0622  (best@13)
+  epoch  60  loss=1.3135  val_AP=0.0655  (best@13)
+  epoch  80  loss=1.2425  val_AP=0.0545  (best@13)
+  epoch 100  loss=1.2063  val_AP=0.0505  (best@13)
+  [结果] evolvegcn_full: AP=0.1602 F1=0.3056 w3=0.4741 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.0797
+  [预训练] epoch 2/5  recon_loss=3.8494
+  [预训练] epoch 3/5  recon_loss=3.6939
+  [预训练] epoch 4/5  recon_loss=3.5221
+  [预训练] epoch 5/5  recon_loss=3.3817
+  epoch   1  loss=3.4869  val_AP=0.1465  (best@1)
+  epoch  20  loss=1.3420  val_AP=0.2110  (best@19)
+  epoch  40  loss=1.2731  val_AP=0.2240  (best@40)
+  epoch  60  loss=1.1981  val_AP=0.2421  (best@60)
+  epoch  80  loss=1.0951  val_AP=0.2960  (best@80)
+  epoch 100  loss=1.0112  val_AP=0.3099  (best@100)
+  [结果] dysat: AP=0.6258 F1=0.5310 w3=0.6530 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1054
+  [预训练] epoch 2/5  recon_loss=3.9328
+  [预训练] epoch 3/5  recon_loss=3.8498
+  [预训练] epoch 4/5  recon_loss=3.7401
+  [预训练] epoch 5/5  recon_loss=3.6526
+  epoch   1  loss=3.4144  val_AP=0.0147  (best@1)
+  epoch  20  loss=1.4574  val_AP=0.2061  (best@7)
+  epoch  40  loss=1.3037  val_AP=0.2132  (best@7)
+  epoch  60  loss=1.2111  val_AP=0.3479  (best@59)
+  epoch  80  loss=1.1574  val_AP=0.0822  (best@59)
+  epoch 100  loss=1.1277  val_AP=0.0684  (best@59)
+  [结果] graphmamba: AP=0.4234 F1=0.4628 w3=0.5832 params=23,512  [已落盘]
+
+######################################################################
+# 种子 50 (9/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1242
+  [预训练] epoch 2/5  recon_loss=4.0015
+  [预训练] epoch 3/5  recon_loss=3.9887
+  [预训练] epoch 4/5  recon_loss=3.9600
+  [预训练] epoch 5/5  recon_loss=3.9418
+  epoch   1  loss=3.3308  val_AP=0.0287  (best@1)
+  epoch  20  loss=1.5495  val_AP=0.0575  (best@10)
+  epoch  40  loss=1.4979  val_AP=0.0542  (best@10)
+  epoch  60  loss=1.4574  val_AP=0.0573  (best@10)
+  epoch  80  loss=1.3614  val_AP=0.0426  (best@10)
+  epoch 100  loss=1.2454  val_AP=0.0685  (best@10)
+  [结果] evolvegcn_full: AP=0.1542 F1=0.2639 w3=0.3643 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1189
+  [预训练] epoch 2/5  recon_loss=3.8955
+  [预训练] epoch 3/5  recon_loss=3.7156
+  [预训练] epoch 4/5  recon_loss=3.5380
+  [预训练] epoch 5/5  recon_loss=3.3911
+  epoch   1  loss=3.4720  val_AP=0.1138  (best@1)
+  epoch  20  loss=1.3395  val_AP=0.2061  (best@19)
+  epoch  40  loss=1.2699  val_AP=0.2173  (best@40)
+  epoch  60  loss=1.1571  val_AP=0.2393  (best@60)
+  epoch  80  loss=1.0616  val_AP=0.2851  (best@80)
+  epoch 100  loss=1.0016  val_AP=0.2938  (best@93)
+  [结果] dysat: AP=0.3063 F1=0.4576 w3=0.6699 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1046
+  [预训练] epoch 2/5  recon_loss=3.9643
+  [预训练] epoch 3/5  recon_loss=3.8744
+  [预训练] epoch 4/5  recon_loss=3.7799
+  [预训练] epoch 5/5  recon_loss=3.7002
+  epoch   1  loss=3.2233  val_AP=0.0334  (best@1)
+  epoch  20  loss=1.4315  val_AP=0.2069  (best@6)
+  epoch  40  loss=1.2674  val_AP=0.2975  (best@40)
+  epoch  60  loss=1.2062  val_AP=0.3589  (best@59)
+  epoch  80  loss=1.1613  val_AP=0.3771  (best@73)
+  epoch 100  loss=1.1123  val_AP=0.0547  (best@73)
+  [结果] graphmamba: AP=0.5461 F1=0.5517 w3=0.6569 params=23,512  [已落盘]
+
+######################################################################
+# 种子 51 (10/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.2788
+  [预训练] epoch 2/5  recon_loss=4.0490
+  [预训练] epoch 3/5  recon_loss=4.0245
+  [预训练] epoch 4/5  recon_loss=4.0111
+  [预训练] epoch 5/5  recon_loss=3.9964
+  epoch   1  loss=3.8213  val_AP=0.0555  (best@1)
+  epoch  20  loss=1.5886  val_AP=0.0137  (best@1)
+  epoch  40  loss=1.3602  val_AP=0.0153  (best@1)
+  epoch  60  loss=1.2597  val_AP=0.0152  (best@1)
+  epoch  80  loss=1.2129  val_AP=0.0156  (best@1)
+  epoch 100  loss=1.1938  val_AP=0.0163  (best@1)
+  [结果] evolvegcn_full: AP=0.0883 F1=0.2094 w3=0.3438 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0736
+  [预训练] epoch 2/5  recon_loss=3.9012
+  [预训练] epoch 3/5  recon_loss=3.7163
+  [预训练] epoch 4/5  recon_loss=3.5525
+  [预训练] epoch 5/5  recon_loss=3.4073
+  epoch   1  loss=3.4867  val_AP=0.1762  (best@1)
+  epoch  20  loss=1.3325  val_AP=0.2318  (best@20)
+  epoch  40  loss=1.2565  val_AP=0.2330  (best@33)
+  epoch  60  loss=1.1822  val_AP=0.2527  (best@60)
+  epoch  80  loss=1.0971  val_AP=0.3012  (best@76)
+  epoch 100  loss=1.0210  val_AP=0.3155  (best@99)
+  [结果] dysat: AP=0.3504 F1=0.4604 w3=0.6476 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1588
+  [预训练] epoch 2/5  recon_loss=4.0237
+  [预训练] epoch 3/5  recon_loss=3.9048
+  [预训练] epoch 4/5  recon_loss=3.8094
+  [预训练] epoch 5/5  recon_loss=3.7301
+  epoch   1  loss=3.5422  val_AP=0.0646  (best@1)
+  epoch  20  loss=1.4572  val_AP=0.1887  (best@6)
+  epoch  40  loss=1.3112  val_AP=0.2142  (best@6)
+  epoch  60  loss=1.2327  val_AP=0.3371  (best@60)
+  epoch  80  loss=1.1705  val_AP=0.2120  (best@66)
+  epoch 100  loss=1.1098  val_AP=0.0577  (best@66)
+  [结果] graphmamba: AP=0.3472 F1=0.4491 w3=0.5757 params=23,512  [已落盘]
+[汇总] 共 30 行 (TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv)
+
+====================================================================================================
+多种子聚合 (mean±std)
+====================================================================================================
+model             n              AUC               AP               F1           w3漂移F1
+---------------------------------------------------------------------------------------
+evolvegcn_full   10    0.8716±0.0376    0.1777±0.0687    0.2761±0.0782    0.3936±0.0942
+dysat            10    0.9609±0.0060    0.4428±0.1191    0.4323±0.1106    0.5771±0.1682
+graphmamba       10    0.9375±0.0152    0.4903±0.0989    0.5167±0.0576    0.6278±0.0628
+====================================================================================================
+[保存] 聚合结果已写入 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds.csv
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+evolvegcn_full    10       0.3936±0.0942   0.230010 [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]        -
+dysat             10       0.5771±0.1682   0.08622 [43, 46]        -
+graphmamba        10       0.6278±0.0628   0.53004 [42, 48, 49, 51]        -
+==============================================================================
+e_date-time:周四 2026/10/15-22:22:37.65
+# matching excision floors (freeze temporal adaptation from window 40)
+s_date-time:周四 2026/10/15-22:22:37.65
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data amlsim --models evolvegcn_full,dysat,graphmamba --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --freeze_mod_from 40 --tag _ext10fz40
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.2213
+  [预训练] epoch 2/5  recon_loss=4.0381
+  [预训练] epoch 3/5  recon_loss=3.9916
+  [预训练] epoch 4/5  recon_loss=3.9788
+  [预训练] epoch 5/5  recon_loss=3.9331
+  epoch   1  loss=3.3782  val_AP=0.0290  (best@1)
+  epoch  20  loss=1.5510  val_AP=0.1600  (best@17)
+  epoch  40  loss=1.4924  val_AP=0.1151  (best@17)
+  epoch  60  loss=1.3838  val_AP=0.1185  (best@17)
+  epoch  80  loss=1.2497  val_AP=0.1313  (best@17)
+  epoch 100  loss=1.1998  val_AP=0.1222  (best@17)
+  [结果] evolvegcn_full: AP=0.3061 F1=0.3933 w3=0.4872 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1427
+  [预训练] epoch 2/5  recon_loss=3.9268
+  [预训练] epoch 3/5  recon_loss=3.7382
+  [预训练] epoch 4/5  recon_loss=3.5763
+  [预训练] epoch 5/5  recon_loss=3.4079
+  epoch   1  loss=3.6119  val_AP=0.0131  (best@1)
+  epoch  20  loss=1.3469  val_AP=0.0641  (best@18)
+
+
+# smoke test (~1 min, CPU)
+s_date-time:周四 2026/10/15-22:45:55.62
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data synthetic --models all --epochs 3 --pretrain_epochs 1
+[环境] device=cuda  torch=2.2.1
+[划分] 训练 t=1-34 | 验证 t=35-39 | 测试 t=40-49  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+[续跑] 检测到 TGM-Lite_审计结果_supervised_synthetic.csv 已有 3 个组合, 自动跳过
+
+>>> 跳过 evolvegcn_full (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+
+>>> 跳过 dysat (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+
+>>> 跳过 graphmamba (seed=42): 已在 TGM-Lite_审计结果_supervised_synthetic.csv 中
+[汇总] 共 3 行 (TGM-Lite_审计结果_supervised_synthetic.csv)
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+evolvegcn_full     1       0.0000±0.0000   0.0000  1 [42]        -
+dysat              1       0.1333±0.0000   0.1333  1 [42]        -
+graphmamba         1       0.7500±0.0000   0.7500    0 []        -
+==============================================================================
+e_date-time:周四 2026/10/15-22:46:00.44
+# full 10-seed audit on AMLSim
+s_date-time:周四 2026/10/15-22:46:00.45
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data amlsim --models evolvegcn_full,dysat,graphmamba --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _ext10
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+[续跑] 检测到 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 已有 30 个组合, 自动跳过
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=42): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=42): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=42): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 43 (2/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=43): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=43): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=43): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 44 (3/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=44): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=44): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=44): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 45 (4/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=45): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=45): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=45): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 46 (5/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=46): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=46): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=46): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 47 (6/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=47): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=47): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=47): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 48 (7/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=48): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=48): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=48): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 49 (8/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=49): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=49): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=49): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 50 (9/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=50): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=50): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=50): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+######################################################################
+# 种子 51 (10/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=51): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 dysat (seed=51): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+
+>>> 跳过 graphmamba (seed=51): 已在 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv 中
+[汇总] 共 30 行 (TGM-Lite_审计结果_supervised_amlsim_ext10_seeds_raw.csv)
+
+====================================================================================================
+多种子聚合 (mean±std)
+====================================================================================================
+model             n              AUC               AP               F1           w3漂移F1
+---------------------------------------------------------------------------------------
+evolvegcn_full   10    0.8716±0.0376    0.1777±0.0687    0.2761±0.0782    0.3936±0.0942
+dysat            10    0.9609±0.0060    0.4428±0.1191    0.4323±0.1106    0.5771±0.1682
+graphmamba       10    0.9375±0.0152    0.4903±0.0989    0.5167±0.0576    0.6278±0.0628
+====================================================================================================
+[保存] 聚合结果已写入 TGM-Lite_审计结果_supervised_amlsim_ext10_seeds.csv
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+evolvegcn_full    10       0.3936±0.0942   0.230010 [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]        -
+dysat             10       0.5771±0.1682   0.08622 [43, 46]        -
+graphmamba        10       0.6278±0.0628   0.53004 [42, 48, 49, 51]        -
+==============================================================================
+e_date-time:周四 2026/10/15-22:46:43.65
+# matching excision floors (freeze temporal adaptation from window 40)
+s_date-time:周四 2026/10/15-22:46:43.65
+# C:\Users\apple\anaconda3\python.exe audit_external.py --data amlsim --models evolvegcn_full,dysat,graphmamba --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --freeze_mod_from 40 --tag _ext10fz40
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+[审计] 模型: ['evolvegcn_full', 'dysat', 'graphmamba']
+[续跑] 检测到 TGM-Lite_审计结果_supervised_amlsim_fz40_ext10fz40_seeds_raw.csv 已有 1 个组合, 自动跳过
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 跳过 evolvegcn_full (seed=42): 已在 TGM-Lite_审计结果_supervised_amlsim_fz40_ext10fz40_seeds_raw.csv 中
+
+>>> 训练模型: dysat (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1427
+  [预训练] epoch 2/5  recon_loss=3.9268
+  [预训练] epoch 3/5  recon_loss=3.7382
+  [预训练] epoch 4/5  recon_loss=3.5763
+  [预训练] epoch 5/5  recon_loss=3.4079
+  epoch   1  loss=3.6119  val_AP=0.0131  (best@1)
+  epoch  20  loss=1.3469  val_AP=0.0641  (best@18)
+  epoch  40  loss=1.2765  val_AP=0.0659  (best@28)
+  epoch  60  loss=1.2181  val_AP=0.0650  (best@28)
+  epoch  80  loss=1.1410  val_AP=0.0869  (best@80)
+  epoch 100  loss=1.0337  val_AP=0.1004  (best@100)
+  [结果] dysat: AP=0.0195 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1732
+  [预训练] epoch 2/5  recon_loss=4.0012
+  [预训练] epoch 3/5  recon_loss=3.8868
+  [预训练] epoch 4/5  recon_loss=3.7996
+  [预训练] epoch 5/5  recon_loss=3.6802
+  epoch   1  loss=3.3515  val_AP=0.0380  (best@1)
+  epoch  20  loss=1.4724  val_AP=0.0978  (best@13)
+  epoch  40  loss=1.3081  val_AP=0.0799  (best@13)
+  epoch  60  loss=1.2249  val_AP=0.1000  (best@13)
+  epoch  80  loss=1.1694  val_AP=0.1095  (best@13)
+  epoch 100  loss=1.1153  val_AP=0.0404  (best@13)
+  [结果] graphmamba: AP=0.1582 F1=0.3107 w3=0.4730 params=23,512  [已落盘]
+
+######################################################################
+# 种子 43 (2/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1547
+  [预训练] epoch 2/5  recon_loss=4.0063
+  [预训练] epoch 3/5  recon_loss=3.9597
+  [预训练] epoch 4/5  recon_loss=3.9399
+  [预训练] epoch 5/5  recon_loss=3.9342
+  epoch   1  loss=3.1778  val_AP=0.0235  (best@1)
+  epoch  20  loss=1.5572  val_AP=0.0604  (best@12)
+  epoch  40  loss=1.4947  val_AP=0.0938  (best@12)
+  epoch  60  loss=1.4611  val_AP=0.1151  (best@12)
+  epoch  80  loss=1.4144  val_AP=0.0725  (best@12)
+  epoch 100  loss=1.3746  val_AP=0.0329  (best@12)
+  [结果] evolvegcn_full: AP=0.2485 F1=0.3503 w3=0.4932 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1125
+  [预训练] epoch 2/5  recon_loss=3.8945
+  [预训练] epoch 3/5  recon_loss=3.6986
+  [预训练] epoch 4/5  recon_loss=3.5384
+  [预训练] epoch 5/5  recon_loss=3.4035
+  epoch   1  loss=3.6765  val_AP=0.0193  (best@1)
+  epoch  20  loss=1.3263  val_AP=0.0590  (best@6)
+  epoch  40  loss=1.2721  val_AP=0.0600  (best@6)
+  epoch  60  loss=1.1841  val_AP=0.0560  (best@6)
+  epoch  80  loss=1.1031  val_AP=0.0607  (best@6)
+  epoch 100  loss=1.0243  val_AP=0.0380  (best@6)
+  [结果] dysat: AP=0.0156 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1107
+  [预训练] epoch 2/5  recon_loss=3.9410
+  [预训练] epoch 3/5  recon_loss=3.8129
+  [预训练] epoch 4/5  recon_loss=3.7178
+  [预训练] epoch 5/5  recon_loss=3.6327
+  epoch   1  loss=3.3500  val_AP=0.0135  (best@1)
+  epoch  20  loss=1.4516  val_AP=0.0194  (best@16)
+  epoch  40  loss=1.2928  val_AP=0.0472  (best@16)
+  epoch  60  loss=1.2132  val_AP=0.0696  (best@59)
+  epoch  80  loss=1.1679  val_AP=0.0815  (best@72)
+  epoch 100  loss=1.1188  val_AP=0.0896  (best@98)
+  [结果] graphmamba: AP=0.0293 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 44 (3/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.2442
+  [预训练] epoch 2/5  recon_loss=4.0588
+  [预训练] epoch 3/5  recon_loss=3.9968
+  [预训练] epoch 4/5  recon_loss=4.0326
+  [预训练] epoch 5/5  recon_loss=3.9768
+  epoch   1  loss=3.7342  val_AP=0.0253  (best@1)
+  epoch  20  loss=1.6036  val_AP=0.0206  (best@11)
+  epoch  40  loss=1.5190  val_AP=0.0209  (best@11)
+  epoch  60  loss=1.4786  val_AP=0.0202  (best@11)
+  epoch  80  loss=1.4377  val_AP=0.0201  (best@11)
+  epoch 100  loss=1.2967  val_AP=0.0216  (best@11)
+  [结果] evolvegcn_full: AP=0.0657 F1=0.1361 w3=0.2362 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.1178
+  [预训练] epoch 2/5  recon_loss=3.9336
+  [预训练] epoch 3/5  recon_loss=3.7269
+  [预训练] epoch 4/5  recon_loss=3.6105
+  [预训练] epoch 5/5  recon_loss=3.4190
+  epoch   1  loss=3.4405  val_AP=0.0145  (best@1)
+  epoch  20  loss=1.3439  val_AP=0.0611  (best@8)
+  epoch  40  loss=1.2781  val_AP=0.0629  (best@28)
+  epoch  60  loss=1.1941  val_AP=0.0622  (best@28)
+  epoch  80  loss=1.0896  val_AP=0.0791  (best@80)
+  epoch 100  loss=1.0074  val_AP=0.0980  (best@100)
+  [结果] dysat: AP=0.0179 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0903
+  [预训练] epoch 2/5  recon_loss=3.9772
+  [预训练] epoch 3/5  recon_loss=3.8525
+  [预训练] epoch 4/5  recon_loss=3.8148
+  [预训练] epoch 5/5  recon_loss=3.6829
+  epoch   1  loss=3.4467  val_AP=0.0142  (best@1)
+  epoch  20  loss=1.4398  val_AP=0.0257  (best@17)
+  epoch  40  loss=1.2970  val_AP=0.0183  (best@17)
+  epoch  60  loss=1.2221  val_AP=0.0146  (best@17)
+  epoch  80  loss=1.1828  val_AP=0.0142  (best@17)
+  epoch 100  loss=1.1438  val_AP=0.0134  (best@17)
+  [结果] graphmamba: AP=0.0154 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 45 (4/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.3097
+  [预训练] epoch 2/5  recon_loss=4.0475
+  [预训练] epoch 3/5  recon_loss=4.0056
+  [预训练] epoch 4/5  recon_loss=4.0142
+  [预训练] epoch 5/5  recon_loss=3.9857
+  epoch   1  loss=3.9196  val_AP=0.0141  (best@1)
+  epoch  20  loss=1.5462  val_AP=0.0560  (best@13)
+  epoch  40  loss=1.4881  val_AP=0.0357  (best@13)
+  epoch  60  loss=1.3440  val_AP=0.0596  (best@13)
+  epoch  80  loss=1.2437  val_AP=0.0708  (best@13)
+  epoch 100  loss=1.2078  val_AP=0.0541  (best@13)
+  [结果] evolvegcn_full: AP=0.2319 F1=0.3461 w3=0.4624 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.0438
+  [预训练] epoch 2/5  recon_loss=3.8305
+  [预训练] epoch 3/5  recon_loss=3.6603
+  [预训练] epoch 4/5  recon_loss=3.5194
+  [预训练] epoch 5/5  recon_loss=3.3500
+  epoch   1  loss=3.7056  val_AP=0.0149  (best@1)
+  epoch  20  loss=1.3389  val_AP=0.0640  (best@18)
+  epoch  40  loss=1.2753  val_AP=0.0657  (best@37)
+  epoch  60  loss=1.2071  val_AP=0.0687  (best@60)
+  epoch  80  loss=1.0977  val_AP=0.0839  (best@80)
+  epoch 100  loss=1.0051  val_AP=0.0981  (best@100)
+  [结果] dysat: AP=0.0191 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1469
+  [预训练] epoch 2/5  recon_loss=3.9864
+  [预训练] epoch 3/5  recon_loss=3.8891
+  [预训练] epoch 4/5  recon_loss=3.8218
+  [预训练] epoch 5/5  recon_loss=3.7132
+  epoch   1  loss=3.2776  val_AP=0.0158  (best@1)
+  epoch  20  loss=1.4504  val_AP=0.0572  (best@20)
+  epoch  40  loss=1.3217  val_AP=0.0512  (best@20)
+  epoch  60  loss=1.2104  val_AP=0.0844  (best@60)
+  epoch  80  loss=1.1599  val_AP=0.0893  (best@70)
+  epoch 100  loss=1.1365  val_AP=0.0555  (best@70)
+  [结果] graphmamba: AP=0.0378 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 46 (5/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1684
+  [预训练] epoch 2/5  recon_loss=4.0182
+  [预训练] epoch 3/5  recon_loss=4.0057
+  [预训练] epoch 4/5  recon_loss=3.9630
+  [预训练] epoch 5/5  recon_loss=3.9973
+  epoch   1  loss=3.6120  val_AP=0.0276  (best@1)
+  epoch  20  loss=1.5781  val_AP=0.0944  (best@11)
+  epoch  40  loss=1.4951  val_AP=0.1193  (best@11)
+  epoch  60  loss=1.4534  val_AP=0.1327  (best@11)
+  epoch  80  loss=1.4116  val_AP=0.1441  (best@11)
+  epoch 100  loss=1.3740  val_AP=0.0912  (best@82)
+  [结果] evolvegcn_full: AP=0.2436 F1=0.3602 w3=0.5012 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1016
+  [预训练] epoch 2/5  recon_loss=3.8747
+  [预训练] epoch 3/5  recon_loss=3.7150
+  [预训练] epoch 4/5  recon_loss=3.5321
+  [预训练] epoch 5/5  recon_loss=3.4184
+  epoch   1  loss=3.1802  val_AP=0.0237  (best@1)
+  epoch  20  loss=1.3271  val_AP=0.0650  (best@5)
+  epoch  40  loss=1.2780  val_AP=0.0670  (best@5)
+  epoch  60  loss=1.2044  val_AP=0.0642  (best@5)
+  epoch  80  loss=1.0918  val_AP=0.0832  (best@80)
+  epoch 100  loss=1.0108  val_AP=0.0934  (best@100)
+  [结果] dysat: AP=0.0168 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1132
+  [预训练] epoch 2/5  recon_loss=3.9470
+  [预训练] epoch 3/5  recon_loss=3.8561
+  [预训练] epoch 4/5  recon_loss=3.7351
+  [预训练] epoch 5/5  recon_loss=3.6844
+  epoch   1  loss=3.6270  val_AP=0.0162  (best@1)
+  epoch  20  loss=1.4719  val_AP=0.0581  (best@20)
+  epoch  40  loss=1.3352  val_AP=0.0461  (best@25)
+  epoch  60  loss=1.2401  val_AP=0.0566  (best@56)
+  epoch  80  loss=1.1605  val_AP=0.0276  (best@56)
+  epoch 100  loss=1.1074  val_AP=0.0162  (best@56)
+  [结果] graphmamba: AP=0.0160 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 47 (6/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1204
+  [预训练] epoch 2/5  recon_loss=3.9874
+  [预训练] epoch 3/5  recon_loss=3.9684
+  [预训练] epoch 4/5  recon_loss=3.9418
+  [预训练] epoch 5/5  recon_loss=3.9477
+  epoch   1  loss=3.5253  val_AP=0.0116  (best@1)
+  epoch  20  loss=1.5808  val_AP=0.0153  (best@10)
+  epoch  40  loss=1.5320  val_AP=0.0180  (best@10)
+  epoch  60  loss=1.3544  val_AP=0.0289  (best@10)
+  epoch  80  loss=1.2626  val_AP=0.0476  (best@10)
+  epoch 100  loss=1.2249  val_AP=0.0812  (best@10)
+  [结果] evolvegcn_full: AP=0.1901 F1=0.3110 w3=0.4577 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1272
+  [预训练] epoch 2/5  recon_loss=3.9001
+  [预训练] epoch 3/5  recon_loss=3.7253
+  [预训练] epoch 4/5  recon_loss=3.5544
+  [预训练] epoch 5/5  recon_loss=3.4303
+  epoch   1  loss=3.7361  val_AP=0.0182  (best@1)
+  epoch  20  loss=1.3335  val_AP=0.1512  (best@20)
+  epoch  40  loss=1.2782  val_AP=0.1605  (best@29)
+  epoch  60  loss=1.2107  val_AP=0.1670  (best@60)
+  epoch  80  loss=1.1140  val_AP=0.1733  (best@79)
+  epoch 100  loss=1.0271  val_AP=0.1560  (best@79)
+  [结果] dysat: AP=0.2317 F1=0.4070 w3=0.5641 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.0984
+  [预训练] epoch 2/5  recon_loss=3.9218
+  [预训练] epoch 3/5  recon_loss=3.8232
+  [预训练] epoch 4/5  recon_loss=3.7225
+  [预训练] epoch 5/5  recon_loss=3.6528
+  epoch   1  loss=3.3633  val_AP=0.0188  (best@1)
+  epoch  20  loss=1.4518  val_AP=0.0317  (best@17)
+  epoch  40  loss=1.2966  val_AP=0.0193  (best@17)
+  epoch  60  loss=1.2288  val_AP=0.0163  (best@17)
+  epoch  80  loss=1.1680  val_AP=0.0381  (best@17)
+  epoch 100  loss=1.1210  val_AP=0.0375  (best@17)
+  [结果] graphmamba: AP=0.0156 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 48 (7/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1546
+  [预训练] epoch 2/5  recon_loss=4.0581
+  [预训练] epoch 3/5  recon_loss=4.0187
+  [预训练] epoch 4/5  recon_loss=3.9805
+  [预训练] epoch 5/5  recon_loss=3.9675
+  epoch   1  loss=3.0977  val_AP=0.0199  (best@1)
+  epoch  20  loss=1.5744  val_AP=0.0449  (best@10)
+  epoch  40  loss=1.5315  val_AP=0.0481  (best@10)
+  epoch  60  loss=1.4876  val_AP=0.0484  (best@10)
+  epoch  80  loss=1.4439  val_AP=0.0473  (best@10)
+  epoch 100  loss=1.4073  val_AP=0.0331  (best@10)
+  [结果] evolvegcn_full: AP=0.1883 F1=0.2737 w3=0.3877 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0944
+  [预训练] epoch 2/5  recon_loss=3.9266
+  [预训练] epoch 3/5  recon_loss=3.7317
+  [预训练] epoch 4/5  recon_loss=3.5467
+  [预训练] epoch 5/5  recon_loss=3.3954
+  epoch   1  loss=3.2337  val_AP=0.0130  (best@1)
+  epoch  20  loss=1.3307  val_AP=0.0611  (best@17)
+  epoch  40  loss=1.2713  val_AP=0.0652  (best@39)
+  epoch  60  loss=1.2009  val_AP=0.0634  (best@39)
+  epoch  80  loss=1.0970  val_AP=0.0878  (best@80)
+  epoch 100  loss=1.0054  val_AP=0.0918  (best@94)
+  [结果] dysat: AP=0.0158 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1624
+  [预训练] epoch 2/5  recon_loss=4.0509
+  [预训练] epoch 3/5  recon_loss=3.9390
+  [预训练] epoch 4/5  recon_loss=3.8309
+  [预训练] epoch 5/5  recon_loss=3.7464
+  epoch   1  loss=3.5751  val_AP=0.0299  (best@1)
+  epoch  20  loss=1.4580  val_AP=0.1530  (best@19)
+  epoch  40  loss=1.3107  val_AP=0.1248  (best@25)
+  epoch  60  loss=1.2450  val_AP=0.0769  (best@25)
+  epoch  80  loss=1.1795  val_AP=0.0777  (best@25)
+  epoch 100  loss=1.1265  val_AP=0.0227  (best@25)
+  [结果] graphmamba: AP=0.2915 F1=0.4076 w3=0.5893 params=23,512  [已落盘]
+
+######################################################################
+# 种子 49 (8/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1004
+  [预训练] epoch 2/5  recon_loss=4.0056
+  [预训练] epoch 3/5  recon_loss=4.0120
+  [预训练] epoch 4/5  recon_loss=3.9773
+  [预训练] epoch 5/5  recon_loss=3.9699
+  epoch   1  loss=3.4549  val_AP=0.0104  (best@1)
+  epoch  20  loss=1.6029  val_AP=0.0604  (best@13)
+  epoch  40  loss=1.4447  val_AP=0.0609  (best@13)
+  epoch  60  loss=1.3130  val_AP=0.0650  (best@13)
+  epoch  80  loss=1.2407  val_AP=0.0538  (best@13)
+  epoch 100  loss=1.2027  val_AP=0.0512  (best@13)
+  [结果] evolvegcn_full: AP=0.1596 F1=0.3059 w3=0.4743 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.0797
+  [预训练] epoch 2/5  recon_loss=3.8494
+  [预训练] epoch 3/5  recon_loss=3.6939
+  [预训练] epoch 4/5  recon_loss=3.5221
+  [预训练] epoch 5/5  recon_loss=3.3817
+  epoch   1  loss=3.4869  val_AP=0.0192  (best@1)
+  epoch  20  loss=1.3420  val_AP=0.0992  (best@20)
+  epoch  40  loss=1.2731  val_AP=0.1228  (best@29)
+  epoch  60  loss=1.1981  val_AP=0.1021  (best@29)
+  epoch  80  loss=1.0951  val_AP=0.1066  (best@29)
+  epoch 100  loss=1.0112  val_AP=0.1106  (best@29)
+  [结果] dysat: AP=0.1422 F1=0.2746 w3=0.4283 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1054
+  [预训练] epoch 2/5  recon_loss=3.9328
+  [预训练] epoch 3/5  recon_loss=3.8498
+  [预训练] epoch 4/5  recon_loss=3.7401
+  [预训练] epoch 5/5  recon_loss=3.6526
+  epoch   1  loss=3.4144  val_AP=0.0136  (best@1)
+  epoch  20  loss=1.4574  val_AP=0.0453  (best@18)
+  epoch  40  loss=1.3037  val_AP=0.0236  (best@18)
+  epoch  60  loss=1.2111  val_AP=0.0309  (best@18)
+  epoch  80  loss=1.1576  val_AP=0.0366  (best@75)
+  epoch 100  loss=1.1283  val_AP=0.0251  (best@75)
+  [结果] graphmamba: AP=0.0170 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 50 (9/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1242
+  [预训练] epoch 2/5  recon_loss=4.0015
+  [预训练] epoch 3/5  recon_loss=3.9887
+  [预训练] epoch 4/5  recon_loss=3.9600
+  [预训练] epoch 5/5  recon_loss=3.9418
+  epoch   1  loss=3.3308  val_AP=0.0287  (best@1)
+  epoch  20  loss=1.5495  val_AP=0.0579  (best@10)
+  epoch  40  loss=1.4979  val_AP=0.0549  (best@10)
+  epoch  60  loss=1.4575  val_AP=0.0590  (best@10)
+  epoch  80  loss=1.3596  val_AP=0.0428  (best@10)
+  epoch 100  loss=1.2440  val_AP=0.0871  (best@10)
+  [结果] evolvegcn_full: AP=0.1544 F1=0.2644 w3=0.3651 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1189
+  [预训练] epoch 2/5  recon_loss=3.8955
+  [预训练] epoch 3/5  recon_loss=3.7156
+  [预训练] epoch 4/5  recon_loss=3.5380
+  [预训练] epoch 5/5  recon_loss=3.3911
+  epoch   1  loss=3.4720  val_AP=0.0484  (best@1)
+  epoch  20  loss=1.3395  val_AP=0.0777  (best@18)
+  epoch  40  loss=1.2699  val_AP=0.0696  (best@31)
+  epoch  60  loss=1.1571  val_AP=0.0609  (best@31)
+  epoch  80  loss=1.0616  val_AP=0.0783  (best@31)
+  epoch 100  loss=1.0016  val_AP=0.0848  (best@91)
+  [结果] dysat: AP=0.0227 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1046
+  [预训练] epoch 2/5  recon_loss=3.9643
+  [预训练] epoch 3/5  recon_loss=3.8744
+  [预训练] epoch 4/5  recon_loss=3.7799
+  [预训练] epoch 5/5  recon_loss=3.7002
+  epoch   1  loss=3.2233  val_AP=0.0161  (best@1)
+  epoch  20  loss=1.4315  val_AP=0.0191  (best@11)
+  epoch  40  loss=1.2674  val_AP=0.0193  (best@11)
+  epoch  60  loss=1.2062  val_AP=0.0174  (best@11)
+  epoch  80  loss=1.1612  val_AP=0.0167  (best@11)
+  epoch 100  loss=1.1115  val_AP=0.0159  (best@11)
+  [结果] graphmamba: AP=0.0154 F1=0.0000 w3=0.0000 params=23,512  [已落盘]
+
+######################################################################
+# 种子 51 (10/10)
+######################################################################
+
+>>> 训练模型: evolvegcn_full (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.2788
+  [预训练] epoch 2/5  recon_loss=4.0490
+  [预训练] epoch 3/5  recon_loss=4.0245
+  [预训练] epoch 4/5  recon_loss=4.0111
+  [预训练] epoch 5/5  recon_loss=3.9964
+  epoch   1  loss=3.8213  val_AP=0.0555  (best@1)
+  epoch  20  loss=1.5886  val_AP=0.0137  (best@1)
+  epoch  40  loss=1.3602  val_AP=0.0153  (best@1)
+  epoch  60  loss=1.2597  val_AP=0.0149  (best@1)
+  epoch  80  loss=1.2130  val_AP=0.0149  (best@1)
+  epoch 100  loss=1.1904  val_AP=0.0163  (best@1)
+  [结果] evolvegcn_full: AP=0.0883 F1=0.2094 w3=0.3438 params=61,080  [已落盘]
+
+>>> 训练模型: dysat (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0736
+  [预训练] epoch 2/5  recon_loss=3.9012
+  [预训练] epoch 3/5  recon_loss=3.7163
+  [预训练] epoch 4/5  recon_loss=3.5525
+  [预训练] epoch 5/5  recon_loss=3.4073
+  epoch   1  loss=3.4867  val_AP=0.0147  (best@1)
+  epoch  20  loss=1.3325  val_AP=0.0638  (best@9)
+  epoch  40  loss=1.2565  val_AP=0.0625  (best@9)
+  epoch  60  loss=1.1822  val_AP=0.0656  (best@9)
+  epoch  80  loss=1.0971  val_AP=0.0833  (best@76)
+  epoch 100  loss=1.0210  val_AP=0.1010  (best@99)
+  [结果] dysat: AP=0.0161 F1=0.0000 w3=0.0000 params=23,702  [已落盘]
+
+>>> 训练模型: graphmamba (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1588
+  [预训练] epoch 2/5  recon_loss=4.0237
+  [预训练] epoch 3/5  recon_loss=3.9048
+  [预训练] epoch 4/5  recon_loss=3.8094
+  [预训练] epoch 5/5  recon_loss=3.7301
+  epoch   1  loss=3.5422  val_AP=0.0308  (best@1)
+  epoch  20  loss=1.4572  val_AP=0.1577  (best@20)
+  epoch  40  loss=1.3111  val_AP=0.2060  (best@40)
+  epoch  60  loss=1.2327  val_AP=0.2426  (best@56)
+  epoch  80  loss=1.1699  val_AP=0.2256  (best@72)
+  epoch 100  loss=1.1084  val_AP=0.1132  (best@88)
+  [结果] graphmamba: AP=0.3691 F1=0.3548 w3=0.4338 params=23,512  [已落盘]
+[汇总] 共 30 行 (TGM-Lite_审计结果_supervised_amlsim_fz40_ext10fz40_seeds_raw.csv)
+
+====================================================================================================
+多种子聚合 (mean±std)
+====================================================================================================
+model             n              AUC               AP               F1           w3漂移F1
+---------------------------------------------------------------------------------------
+evolvegcn_full   10    0.8738±0.0386    0.1877±0.0703    0.2950±0.0734    0.4209±0.0814
+dysat            10    0.3511±0.2859    0.0517±0.0705    0.0682±0.1395    0.0992±0.2008
+graphmamba       10    0.4452±0.3645    0.0965±0.1251    0.1073±0.1653    0.1496±0.2314
+====================================================================================================
+[保存] 聚合结果已写入 TGM-Lite_审计结果_supervised_amlsim_fz40_ext10fz40_seeds.csv
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+evolvegcn_full    10       0.4209±0.0814   0.236210 [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]        -
+dysat             10       0.0992±0.2008   0.000010 [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]        -
+graphmamba        10       0.1496±0.2314   0.000010 [42, 43, 44, 45, 46, 47, 48, 49, 50, 51]        -
+==============================================================================
+e_date-time:周五 2026/10/16- 6:44:27.13
+

@@ -1,0 +1,320 @@
+#对抗维度（M4）
+'抗审计_amlsim_adv10_seeds_raw.csv' is not recognized as an internal or external command,
+operable program or batch file.
+s_date-time:周五 2026/10/16-21:05:21.26
+# C:\Users\apple\anaconda3\python.exe  audit_adversarial.py --data amlsim --models tgmlite,gcn --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --eps 0.05,0.1,0.2 --tag _adv10
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] chunk 8 -> 4 (AMLSim, 与主表一致)
+[划分] train 1-36 | val 37-48 | test 49-60
+
+===== model=tgmlite  seed=42 =====
+  [预训练] epoch 1/5  recon_loss=4.1086
+  [预训练] epoch 2/5  recon_loss=3.9488
+  [预训练] epoch 3/5  recon_loss=3.8341
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6310
+  epoch   1  loss=3.3134  val_AP=0.0916  (best@1)
+  epoch  20  loss=1.4023  val_AP=0.2085  (best@18)
+  epoch  40  loss=1.2781  val_AP=0.3025  (best@40)
+  epoch  60  loss=1.2254  val_AP=0.3835  (best@53)
+  epoch  80  loss=1.1875  val_AP=0.4132  (best@80)
+  epoch 100  loss=1.1470  val_AP=0.3902  (best@80)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+  [sanity] tgmlite clean floor w3=0.6698 vs canonical 0.6729 -> OK
+
+===== model=tgmlite  seed=43 =====
+  [预训练] epoch 1/5  recon_loss=4.0682
+  [预训练] epoch 2/5  recon_loss=3.9251
+  [预训练] epoch 3/5  recon_loss=3.8090
+  [预训练] epoch 4/5  recon_loss=3.7173
+  [预训练] epoch 5/5  recon_loss=3.6202
+  epoch   1  loss=3.8131  val_AP=0.0674  (best@1)
+  epoch  20  loss=1.4050  val_AP=0.1949  (best@8)
+  epoch  40  loss=1.2726  val_AP=0.3769  (best@40)
+  epoch  60  loss=1.2271  val_AP=0.4003  (best@60)
+  epoch  80  loss=1.1923  val_AP=0.4220  (best@79)
+  epoch 100  loss=1.1746  val_AP=0.4274  (best@97)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=44 =====
+  [预训练] epoch 1/5  recon_loss=4.0954
+  [预训练] epoch 2/5  recon_loss=3.9722
+  [预训练] epoch 3/5  recon_loss=3.8375
+  [预训练] epoch 4/5  recon_loss=3.7908
+  [预训练] epoch 5/5  recon_loss=3.6487
+  epoch   1  loss=3.0956  val_AP=0.1569  (best@1)
+  epoch  20  loss=1.4300  val_AP=0.2279  (best@20)
+  epoch  40  loss=1.2899  val_AP=0.3052  (best@40)
+  epoch  60  loss=1.2267  val_AP=0.3925  (best@60)
+  epoch  80  loss=1.1992  val_AP=0.4151  (best@77)
+  epoch 100  loss=1.1790  val_AP=0.4295  (best@96)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=45 =====
+  [预训练] epoch 1/5  recon_loss=4.1181
+  [预训练] epoch 2/5  recon_loss=3.9464
+  [预训练] epoch 3/5  recon_loss=3.8336
+  [预训练] epoch 4/5  recon_loss=3.7474
+  [预训练] epoch 5/5  recon_loss=3.6284
+  epoch   1  loss=3.5743  val_AP=0.0672  (best@1)
+  epoch  20  loss=1.3859  val_AP=0.2141  (best@8)
+  epoch  40  loss=1.2771  val_AP=0.3170  (best@40)
+  epoch  60  loss=1.2324  val_AP=0.3833  (best@59)
+  epoch  80  loss=1.2072  val_AP=0.4134  (best@74)
+  epoch 100  loss=1.1760  val_AP=0.4269  (best@100)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=46 =====
+  [预训练] epoch 1/5  recon_loss=4.1171
+  [预训练] epoch 2/5  recon_loss=3.9391
+  [预训练] epoch 3/5  recon_loss=3.8483
+  [预训练] epoch 4/5  recon_loss=3.7337
+  [预训练] epoch 5/5  recon_loss=3.6853
+  epoch   1  loss=3.5465  val_AP=0.0239  (best@1)
+  epoch  20  loss=1.4239  val_AP=0.2184  (best@8)
+  epoch  40  loss=1.3077  val_AP=0.2478  (best@40)
+  epoch  60  loss=1.2265  val_AP=0.3789  (best@58)
+  epoch  80  loss=1.2059  val_AP=0.4175  (best@80)
+  epoch 100  loss=1.1812  val_AP=0.4247  (best@93)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=47 =====
+  [预训练] epoch 1/5  recon_loss=4.1252
+  [预训练] epoch 2/5  recon_loss=3.9568
+  [预训练] epoch 3/5  recon_loss=3.8607
+  [预训练] epoch 4/5  recon_loss=3.7703
+  [预训练] epoch 5/5  recon_loss=3.7161
+  epoch   1  loss=3.4508  val_AP=0.1087  (best@1)
+  epoch  20  loss=1.3981  val_AP=0.2043  (best@5)
+  epoch  40  loss=1.2909  val_AP=0.2906  (best@40)
+  epoch  60  loss=1.2184  val_AP=0.3844  (best@60)
+  epoch  80  loss=1.1680  val_AP=0.3933  (best@78)
+  epoch 100  loss=1.1481  val_AP=0.3806  (best@78)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=48 =====
+  [预训练] epoch 1/5  recon_loss=4.0851
+  [预训练] epoch 2/5  recon_loss=3.9738
+  [预训练] epoch 3/5  recon_loss=3.8482
+  [预训练] epoch 4/5  recon_loss=3.7191
+  [预训练] epoch 5/5  recon_loss=3.6033
+  epoch   1  loss=3.4872  val_AP=0.0976  (best@1)
+  epoch  20  loss=1.4199  val_AP=0.2317  (best@7)
+  epoch  40  loss=1.2962  val_AP=0.2508  (best@40)
+  epoch  60  loss=1.2356  val_AP=0.3864  (best@60)
+  epoch  80  loss=1.2047  val_AP=0.4109  (best@78)
+  epoch 100  loss=1.1786  val_AP=0.4269  (best@96)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=49 =====
+  [预训练] epoch 1/5  recon_loss=4.1063
+  [预训练] epoch 2/5  recon_loss=3.9355
+  [预训练] epoch 3/5  recon_loss=3.8534
+  [预训练] epoch 4/5  recon_loss=3.7371
+  [预训练] epoch 5/5  recon_loss=3.6431
+  epoch   1  loss=3.2006  val_AP=0.1626  (best@1)
+  epoch  20  loss=1.3871  val_AP=0.2068  (best@3)
+  epoch  40  loss=1.2652  val_AP=0.2994  (best@40)
+  epoch  60  loss=1.2116  val_AP=0.3918  (best@60)
+  epoch  80  loss=1.1723  val_AP=0.4272  (best@80)
+  epoch 100  loss=1.1358  val_AP=0.4432  (best@100)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=50 =====
+  [预训练] epoch 1/5  recon_loss=4.1236
+  [预训练] epoch 2/5  recon_loss=3.9725
+  [预训练] epoch 3/5  recon_loss=3.8659
+  [预训练] epoch 4/5  recon_loss=3.7524
+  [预训练] epoch 5/5  recon_loss=3.6501
+  epoch   1  loss=3.5882  val_AP=0.1561  (best@1)
+  epoch  20  loss=1.3548  val_AP=0.2166  (best@5)
+  epoch  40  loss=1.2239  val_AP=0.3644  (best@40)
+  epoch  60  loss=1.1953  val_AP=0.3888  (best@60)
+  epoch  80  loss=1.1721  val_AP=0.4187  (best@76)
+  epoch 100  loss=1.1539  val_AP=0.4115  (best@76)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=tgmlite  seed=51 =====
+  [预训练] epoch 1/5  recon_loss=4.0949
+  [预训练] epoch 2/5  recon_loss=3.9706
+  [预训练] epoch 3/5  recon_loss=3.8491
+  [预训练] epoch 4/5  recon_loss=3.7503
+  [预训练] epoch 5/5  recon_loss=3.6562
+  epoch   1  loss=3.9085  val_AP=0.0220  (best@1)
+  epoch  20  loss=1.4078  val_AP=0.2182  (best@20)
+  epoch  40  loss=1.2758  val_AP=0.3177  (best@40)
+  epoch  60  loss=1.2144  val_AP=0.3267  (best@52)
+  epoch  80  loss=1.1842  val_AP=0.3814  (best@80)
+  epoch 100  loss=1.1571  val_AP=0.4045  (best@100)
+  [已保存] 14 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=42 =====
+  [预训练] epoch 1/5  recon_loss=4.1080
+  [预训练] epoch 2/5  recon_loss=3.9546
+  [预训练] epoch 3/5  recon_loss=3.8448
+  [预训练] epoch 4/5  recon_loss=3.7659
+  [预训练] epoch 5/5  recon_loss=3.6555
+  epoch   1  loss=3.3070  val_AP=0.0853  (best@1)
+  epoch  20  loss=1.4122  val_AP=0.2101  (best@5)
+  epoch  40  loss=1.2865  val_AP=0.2667  (best@40)
+  epoch  60  loss=1.2278  val_AP=0.3782  (best@59)
+  epoch  80  loss=1.2013  val_AP=0.4162  (best@79)
+  epoch 100  loss=1.1730  val_AP=0.4349  (best@100)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+  [sanity] GCN clean AP=0.5986 vs canonical 0.5922 -> OK
+
+===== model=gcn  seed=43 =====
+  [预训练] epoch 1/5  recon_loss=4.0683
+  [预训练] epoch 2/5  recon_loss=3.9332
+  [预训练] epoch 3/5  recon_loss=3.8249
+  [预训练] epoch 4/5  recon_loss=3.7442
+  [预训练] epoch 5/5  recon_loss=3.6612
+  epoch   1  loss=3.7992  val_AP=0.0383  (best@1)
+  epoch  20  loss=1.3965  val_AP=0.2161  (best@8)
+  epoch  40  loss=1.2923  val_AP=0.2875  (best@40)
+  epoch  60  loss=1.2358  val_AP=0.3827  (best@58)
+  epoch  80  loss=1.2026  val_AP=0.4107  (best@80)
+  epoch 100  loss=1.1888  val_AP=0.4348  (best@99)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=44 =====
+  [预训练] epoch 1/5  recon_loss=4.0962
+  [预训练] epoch 2/5  recon_loss=3.9818
+  [预训练] epoch 3/5  recon_loss=3.8570
+  [预训练] epoch 4/5  recon_loss=3.8201
+  [预训练] epoch 5/5  recon_loss=3.6882
+  epoch   1  loss=3.1423  val_AP=0.0481  (best@1)
+  epoch  20  loss=1.4258  val_AP=0.2265  (best@20)
+  epoch  40  loss=1.3116  val_AP=0.2467  (best@40)
+  epoch  60  loss=1.2371  val_AP=0.3835  (best@60)
+  epoch  80  loss=1.2083  val_AP=0.4051  (best@80)
+  epoch 100  loss=1.1932  val_AP=0.4185  (best@97)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=45 =====
+  [预训练] epoch 1/5  recon_loss=4.1185
+  [预训练] epoch 2/5  recon_loss=3.9538
+  [预训练] epoch 3/5  recon_loss=3.8479
+  [预训练] epoch 4/5  recon_loss=3.7706
+  [预训练] epoch 5/5  recon_loss=3.6610
+  epoch   1  loss=3.5807  val_AP=0.0431  (best@1)
+  epoch  20  loss=1.3979  val_AP=0.1970  (best@10)
+  epoch  40  loss=1.2902  val_AP=0.2592  (best@40)
+  epoch  60  loss=1.2360  val_AP=0.3667  (best@60)
+  epoch  80  loss=1.2137  val_AP=0.3963  (best@80)
+  epoch 100  loss=1.1934  val_AP=0.4106  (best@100)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=46 =====
+  [预训练] epoch 1/5  recon_loss=4.1178
+  [预训练] epoch 2/5  recon_loss=3.9449
+  [预训练] epoch 3/5  recon_loss=3.8585
+  [预训练] epoch 4/5  recon_loss=3.7497
+  [预训练] epoch 5/5  recon_loss=3.7111
+  epoch   1  loss=3.5653  val_AP=0.0158  (best@1)
+  epoch  20  loss=1.4424  val_AP=0.2222  (best@11)
+  epoch  40  loss=1.3203  val_AP=0.2417  (best@40)
+  epoch  60  loss=1.2440  val_AP=0.3506  (best@60)
+  epoch  80  loss=1.2148  val_AP=0.4027  (best@80)
+  epoch 100  loss=1.1871  val_AP=0.4224  (best@100)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=47 =====
+  [预训练] epoch 1/5  recon_loss=4.1250
+  [预训练] epoch 2/5  recon_loss=3.9612
+  [预训练] epoch 3/5  recon_loss=3.8700
+  [预训练] epoch 4/5  recon_loss=3.7848
+  [预训练] epoch 5/5  recon_loss=3.7368
+  epoch   1  loss=3.4553  val_AP=0.0808  (best@1)
+  epoch  20  loss=1.4174  val_AP=0.2205  (best@7)
+  epoch  40  loss=1.3143  val_AP=0.2372  (best@7)
+  epoch  60  loss=1.2388  val_AP=0.3585  (best@60)
+  epoch  80  loss=1.2044  val_AP=0.3954  (best@80)
+  epoch 100  loss=1.1867  val_AP=0.4181  (best@100)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=48 =====
+  [预训练] epoch 1/5  recon_loss=4.0872
+  [预训练] epoch 2/5  recon_loss=3.9841
+  [预训练] epoch 3/5  recon_loss=3.8662
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6490
+  epoch   1  loss=3.4902  val_AP=0.0725  (best@1)
+  epoch  20  loss=1.4121  val_AP=0.2272  (best@8)
+  epoch  40  loss=1.3131  val_AP=0.2237  (best@8)
+  epoch  60  loss=1.2431  val_AP=0.3604  (best@60)
+  epoch  80  loss=1.2100  val_AP=0.3983  (best@80)
+  epoch 100  loss=1.1956  val_AP=0.4134  (best@93)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=49 =====
+  [预训练] epoch 1/5  recon_loss=4.1061
+  [预训练] epoch 2/5  recon_loss=3.9416
+  [预训练] epoch 3/5  recon_loss=3.8684
+  [预训练] epoch 4/5  recon_loss=3.7640
+  [预训练] epoch 5/5  recon_loss=3.6843
+  epoch   1  loss=3.2415  val_AP=0.1577  (best@1)
+  epoch  20  loss=1.3932  val_AP=0.2094  (best@5)
+  epoch  40  loss=1.3015  val_AP=0.2533  (best@40)
+  epoch  60  loss=1.2495  val_AP=0.3872  (best@59)
+  epoch  80  loss=1.2123  val_AP=0.4245  (best@78)
+  epoch 100  loss=1.1838  val_AP=0.4349  (best@99)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=50 =====
+  [预训练] epoch 1/5  recon_loss=4.1249
+  [预训练] epoch 2/5  recon_loss=3.9814
+  [预训练] epoch 3/5  recon_loss=3.8833
+  [预训练] epoch 4/5  recon_loss=3.7797
+  [预训练] epoch 5/5  recon_loss=3.6900
+  epoch   1  loss=3.5687  val_AP=0.0810  (best@1)
+  epoch  20  loss=1.3628  val_AP=0.2130  (best@6)
+  epoch  40  loss=1.2606  val_AP=0.3505  (best@40)
+  epoch  60  loss=1.2275  val_AP=0.4027  (best@60)
+  epoch  80  loss=1.2031  val_AP=0.4205  (best@80)
+  epoch 100  loss=1.1859  val_AP=0.4301  (best@94)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== model=gcn  seed=51 =====
+  [预训练] epoch 1/5  recon_loss=4.0956
+  [预训练] epoch 2/5  recon_loss=3.9781
+  [预训练] epoch 3/5  recon_loss=3.8614
+  [预训练] epoch 4/5  recon_loss=3.7688
+  [预训练] epoch 5/5  recon_loss=3.6849
+  epoch   1  loss=3.8750  val_AP=0.0203  (best@1)
+  epoch  20  loss=1.4231  val_AP=0.2020  (best@7)
+  epoch  40  loss=1.2912  val_AP=0.2685  (best@40)
+  epoch  60  loss=1.2405  val_AP=0.3636  (best@60)
+  epoch  80  loss=1.2216  val_AP=0.3840  (best@79)
+  epoch 100  loss=1.1968  val_AP=0.4094  (best@100)
+  [已保存] 7 行 -> TGM-Lite_对抗审计_amlsim_adv10_seeds_raw.csv
+
+===== 对抗审计汇总 =====
+gcn      clean    eps=0.0   adaptive  | w3 0.6897±0.0079 min 0.6780 | 崩溃 0/10 诱发 0 | Δw3
+gcn      drift    eps=0.05  adaptive  | w3 0.6936±0.0057 min 0.6834 | 崩溃 0/10 诱发 0 | Δw3 0.0039
+gcn      drift    eps=0.1   adaptive  | w3 0.6942±0.0067 min 0.6837 | 崩溃 0/10 诱发 0 | Δw3 0.0044
+gcn      drift    eps=0.2   adaptive  | w3 0.6787±0.0243 min 0.6079 | 崩溃 0/10 诱发 0 | Δw3 -0.0110
+gcn      evasion  eps=0.05  adaptive  | w3 0.4813±0.0337 min 0.4302 | 崩溃 10/10 诱发 10 | Δw3 -0.2085
+gcn      evasion  eps=0.1   adaptive  | w3 0.1332±0.0601 min 0.0637 | 崩溃 10/10 诱发 10 | Δw3 -0.5565
+gcn      evasion  eps=0.2   adaptive  | w3 0.0033±0.0020 min 0.0000 | 崩溃 10/10 诱发 10 | Δw3 -0.6864
+tgmlite  clean    eps=0.0   adaptive  | w3 0.6457±0.1485 min 0.2007 | 崩溃 1/10 诱发 0 | Δw3
+tgmlite  clean    eps=0.0   floor     | w3 0.5919±0.1209 min 0.2903 | 崩溃 3/10 诱发 0 | Δw3
+tgmlite  drift    eps=0.05  adaptive  | w3 0.6760±0.0675 min 0.4740 | 崩溃 1/10 诱发 0 | Δw3 0.0303
+tgmlite  drift    eps=0.05  floor     | w3 0.5914±0.1134 min 0.3191 | 崩溃 3/10 诱发 0 | Δw3 -0.0004
+tgmlite  drift    eps=0.1   adaptive  | w3 0.6920±0.0159 min 0.6488 | 崩溃 0/10 诱发 0 | Δw3 0.0463
+tgmlite  drift    eps=0.1   floor     | w3 0.5857±0.1163 min 0.3218 | 崩溃 3/10 诱发 0 | Δw3 -0.0061
+tgmlite  drift    eps=0.2   adaptive  | w3 0.6619±0.0253 min 0.6091 | 崩溃 0/10 诱发 0 | Δw3 0.0162
+tgmlite  drift    eps=0.2   floor     | w3 0.5436±0.1502 min 0.2585 | 崩溃 4/10 诱发 1 | Δw3 -0.0483
+tgmlite  evasion  eps=0.05  adaptive  | w3 0.4393±0.1408 min 0.0311 | 崩溃 10/10 诱发 9 | Δw3 -0.2064
+tgmlite  evasion  eps=0.05  floor     | w3 0.4239±0.1896 min 0.0420 | 崩溃 9/10 诱发 6 | Δw3 -0.1680
+tgmlite  evasion  eps=0.1   adaptive  | w3 0.1313±0.0818 min 0.0066 | 崩溃 10/10 诱发 9 | Δw3 -0.5144
+tgmlite  evasion  eps=0.1   floor     | w3 0.2381±0.1811 min 0.0066 | 崩溃 10/10 诱发 7 | Δw3 -0.3538
+tgmlite  evasion  eps=0.2   adaptive  | w3 0.0028±0.0016 min 0.0000 | 崩溃 10/10 诱发 9 | Δw3 -0.6429
+tgmlite  evasion  eps=0.2   floor     | w3 0.0424±0.0828 min 0.0000 | 崩溃 10/10 诱发 7 | Δw3 -0.5495
+[已保存] 汇总 -> TGM-Lite_对抗审计_amlsim_adv10_summary.csv
+e_date-time:周六 2026/10/17- 0:21:33.33

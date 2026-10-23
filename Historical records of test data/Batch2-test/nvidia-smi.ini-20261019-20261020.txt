@@ -1,0 +1,69 @@
+Windows PowerShell
+版权所有（C） Microsoft Corporation。保留所有权利。
+
+安装最新的 PowerShell，了解新功能和改进！https://aka.ms/PSWindows
+
+PS C:\Users\apple> nvidia-smi.exe
+Mon Oct 19 16:00:03 2026
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 522.06       Driver Version: 522.06       CUDA Version: 11.8     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| N/A   75C    P2    85W /  N/A |   2690MiB /  6144MiB |     99%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      5108    C+G   C:\Windows\explorer.exe         N/A      |
+|    0   N/A  N/A      5432    C+G   ...cw5n1h2txyewy\LockApp.exe    N/A      |
+|    0   N/A  N/A      7972    C+G   ...283.60\msedgewebview2.exe    N/A      |
+|    0   N/A  N/A      9248    C+G   ...y\ShellExperienceHost.exe    N/A      |
+|    0   N/A  N/A     11556    C+G   ...n1h2txyewy\SearchHost.exe    N/A      |
+|    0   N/A  N/A     11580    C+G   ...artMenuExperienceHost.exe    N/A      |
+|    0   N/A  N/A     16376    C+G   ...2txyewy\TextInputHost.exe    N/A      |
+|    0   N/A  N/A     17924    C+G   ...e\PhoneExperienceHost.exe    N/A      |
+|    0   N/A  N/A     19720      C   ...pple\anaconda3\python.exe    N/A      |
+|    0   N/A  N/A     26448    C+G   ...0904.1607\DingTalkDoc.exe    N/A      |
+|    0   N/A  N/A     34628    C+G   ...8bbwe\WindowsTerminal.exe    N/A      |
+|    0   N/A  N/A     35408    C+G   ...ge\Application\msedge.exe    N/A      |
++-----------------------------------------------------------------------------+
+PS C:\Users\apple> nvidia-smi.exe
+Wed Oct 21 06:37:57 2026
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 522.06       Driver Version: 522.06       CUDA Version: 11.8     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name            TCC/WDDM | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ... WDDM  | 00000000:01:00.0  On |                  N/A |
+| N/A   43C    P8    10W /  N/A |    250MiB /  6144MiB |      2%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      5108    C+G   C:\Windows\explorer.exe         N/A      |
+|    0   N/A  N/A      5432    C+G   ...cw5n1h2txyewy\LockApp.exe    N/A      |
+|    0   N/A  N/A      7972    C+G   ...283.60\msedgewebview2.exe    N/A      |
+|    0   N/A  N/A      9248    C+G   ...y\ShellExperienceHost.exe    N/A      |
+|    0   N/A  N/A     11556    C+G   ...n1h2txyewy\SearchHost.exe    N/A      |
+|    0   N/A  N/A     11580    C+G   ...artMenuExperienceHost.exe    N/A      |
+|    0   N/A  N/A     16376    C+G   ...2txyewy\TextInputHost.exe    N/A      |
+|    0   N/A  N/A     17924    C+G   ...e\PhoneExperienceHost.exe    N/A      |
+|    0   N/A  N/A     26448    C+G   ...0904.1607\DingTalkDoc.exe    N/A      |
+|    0   N/A  N/A     34628    C+G   ...8bbwe\WindowsTerminal.exe    N/A      |
+|    0   N/A  N/A     35408    C+G   ...ge\Application\msedge.exe    N/A      |
+|    0   N/A  N/A     44204    C+G   ...e6\promecefpluginhost.exe    N/A      |
++-----------------------------------------------------------------------------+

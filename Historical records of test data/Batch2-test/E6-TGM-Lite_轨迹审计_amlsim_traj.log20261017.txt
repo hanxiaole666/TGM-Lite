@@ -1,0 +1,85 @@
+Microsoft Windows [版本 10.0.22631.6199]
+(c) Microsoft Corporation。保留所有权利。
+
+C:\Users\apple>d:
+
+D:\>cd TGM-Lite
+
+D:\TGM-Lite>C:\Users\apple\anaconda3\python.exe audit_trajectory.py --data amlsim --seeds 42,43,47,50 --epochs 100 --pretrain_epochs 5 --tag _traj
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] chunk 8 -> 4 (AMLSim, 与主表一致)
+[划分] train 1-36 | val 37-48 | test 49-60
+
+===== seed=42: 按 canonical 主表协议重训 tgmlite =====
+  [预训练] epoch 1/5  recon_loss=4.1086
+  [预训练] epoch 2/5  recon_loss=3.9488
+  [预训练] epoch 3/5  recon_loss=3.8341
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6310
+  epoch   1  loss=3.3134  val_AP=0.0916  (best@1)
+  epoch  20  loss=1.4023  val_AP=0.2086  (best@18)
+  epoch  40  loss=1.2780  val_AP=0.3027  (best@40)
+  epoch  60  loss=1.2254  val_AP=0.3828  (best@53)
+  epoch  80  loss=1.1887  val_AP=0.4141  (best@80)
+  epoch 100  loss=1.1505  val_AP=0.3715  (best@80)
+  seed 42: w1=0.3601 w2=0.4004 w3=0.6952 -> healthy
+  [已保存] 60 行 -> TGM-Lite_轨迹审计_amlsim_traj.csv
+
+===== seed=43: 按 canonical 主表协议重训 tgmlite =====
+  [预训练] epoch 1/5  recon_loss=4.0682
+  [预训练] epoch 2/5  recon_loss=3.9251
+  [预训练] epoch 3/5  recon_loss=3.8090
+  [预训练] epoch 4/5  recon_loss=3.7173
+  [预训练] epoch 5/5  recon_loss=3.6202
+  epoch   1  loss=3.8131  val_AP=0.0674  (best@1)
+  epoch  20  loss=1.4050  val_AP=0.1949  (best@8)
+  epoch  40  loss=1.2726  val_AP=0.3771  (best@40)
+  epoch  60  loss=1.2271  val_AP=0.4010  (best@60)
+  epoch  80  loss=1.1923  val_AP=0.4220  (best@80)
+  epoch 100  loss=1.1748  val_AP=0.4288  (best@97)
+  seed 43: w1=0.3617 w2=0.4186 w3=0.6921 -> healthy
+  [已保存] 60 行 -> TGM-Lite_轨迹审计_amlsim_traj.csv
+
+===== seed=47: 按 canonical 主表协议重训 tgmlite =====
+  [预训练] epoch 1/5  recon_loss=4.1252
+  [预训练] epoch 2/5  recon_loss=3.9568
+  [预训练] epoch 3/5  recon_loss=3.8607
+  [预训练] epoch 4/5  recon_loss=3.7703
+  [预训练] epoch 5/5  recon_loss=3.7161
+  epoch   1  loss=3.4508  val_AP=0.1087  (best@1)
+  epoch  20  loss=1.3979  val_AP=0.2047  (best@5)
+  epoch  40  loss=1.2909  val_AP=0.2906  (best@40)
+  epoch  60  loss=1.2151  val_AP=0.3769  (best@60)
+  epoch  80  loss=1.1671  val_AP=0.3921  (best@79)
+  epoch 100  loss=1.1444  val_AP=0.3772  (best@79)
+  seed 47: w1=0.3693 w2=0.3869 w3=0.1464 -> COLLAPSED
+  [已保存] 60 行 -> TGM-Lite_轨迹审计_amlsim_traj.csv
+
+===== seed=50: 按 canonical 主表协议重训 tgmlite =====
+  [预训练] epoch 1/5  recon_loss=4.1236
+  [预训练] epoch 2/5  recon_loss=3.9725
+  [预训练] epoch 3/5  recon_loss=3.8659
+  [预训练] epoch 4/5  recon_loss=3.7524
+  [预训练] epoch 5/5  recon_loss=3.6501
+  epoch   1  loss=3.5882  val_AP=0.1561  (best@1)
+  epoch  20  loss=1.3549  val_AP=0.2166  (best@5)
+  epoch  40  loss=1.2239  val_AP=0.3645  (best@40)
+  epoch  60  loss=1.1949  val_AP=0.3904  (best@60)
+  epoch  80  loss=1.1716  val_AP=0.4172  (best@76)
+  epoch 100  loss=1.1536  val_AP=0.4077  (best@99)
+  seed 50: w1=0.3639 w2=0.4118 w3=0.6984 -> healthy
+  [已保存] 60 行 -> TGM-Lite_轨迹审计_amlsim_traj.csv
+
+完成。作图: python fig_trajectory.py --csv TGM-Lite_轨迹审计_amlsim_traj.csv --train_end 36 --val_end 48 --floor_from 40
+
+D:\TGM-Lite>C:\Users\apple\anaconda3\python.exe fig_trajectory.py --csv TGM-Lite_轨迹审计_amlsim_traj.csv --train_end 36 --val_end 48 --floor_from 40 --out fig_trajectory
+[已保存] fig_trajectory.pdf / .png
+
+
+
+

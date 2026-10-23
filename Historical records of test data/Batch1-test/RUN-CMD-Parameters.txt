@@ -1,0 +1,18 @@
+# 1 主表 experiments 
+--data amlsim --model all --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+# 2 跨银行
+--data amlsim --model all --split_mode bank --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+# 3 5% 标签(两条)
+--data amlsim --model rf,mlp,gcn,tgmlite --label_rate 0.05 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+--data amlsim --model evolvegcn --label_rate 0.05 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_evolvegcn
+# 4 Elliptic + PU
+--data elliptic --model all --epochs 40 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+--data elliptic --task pu --epochs 40 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+# 5 消融 7 条(补上 c4)
+--data amlsim --model tgmlite --pretrain_epochs 0 --epochs 100 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2
+--data amlsim --model tgmlite --rank 4 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_r4
+--data amlsim --model tgmlite --rank 32 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_r32
+--data amlsim --model tgmlite --state 64 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_m64
+--data amlsim --model tgmlite --state 256 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_m256
+--data amlsim --model tgmlite --chunk 4 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_c4
+--data amlsim --model tgmlite --chunk 16 --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s_v2_c16

@@ -1,0 +1,353 @@
+s_date-time:周五 2026/10/16- 8:16:37.47
+# C:\Users\apple\anaconda3\python.exe  audit_external.py --data amlsim --models dysat_static,graphmamba_static --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _static10
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+[审计] 模型: ['dysat_static', 'graphmamba_static']
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1452
+  [预训练] epoch 2/5  recon_loss=3.9250
+  [预训练] epoch 3/5  recon_loss=3.7321
+  [预训练] epoch 4/5  recon_loss=3.5703
+  [预训练] epoch 5/5  recon_loss=3.3985
+  epoch   1  loss=3.2848  val_AP=0.0816  (best@1)
+  epoch  20  loss=1.5178  val_AP=0.2002  (best@15)
+  epoch  40  loss=1.4339  val_AP=0.2151  (best@40)
+  epoch  60  loss=1.3428  val_AP=0.2230  (best@60)
+  epoch  80  loss=1.2420  val_AP=0.2385  (best@80)
+  epoch 100  loss=1.1810  val_AP=0.2475  (best@100)
+  [结果] dysat_static: AP=0.4157 F1=0.5139 w3=0.6643 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1618
+  [预训练] epoch 2/5  recon_loss=3.9850
+  [预训练] epoch 3/5  recon_loss=3.8620
+  [预训练] epoch 4/5  recon_loss=3.7762
+  [预训练] epoch 5/5  recon_loss=3.6586
+  epoch   1  loss=3.4459  val_AP=0.1333  (best@1)
+  epoch  20  loss=1.3923  val_AP=0.2120  (best@14)
+  epoch  40  loss=1.2750  val_AP=0.2884  (best@40)
+  epoch  60  loss=1.2296  val_AP=0.3750  (best@60)
+  epoch  80  loss=1.2025  val_AP=0.4224  (best@80)
+  epoch 100  loss=1.1839  val_AP=0.4325  (best@96)
+  [结果] graphmamba_static: AP=0.6005 F1=0.5771 w3=0.6907 params=11,032  [已落盘]
+
+######################################################################
+# 种子 43 (2/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1371
+  [预训练] epoch 2/5  recon_loss=3.9107
+  [预训练] epoch 3/5  recon_loss=3.7181
+  [预训练] epoch 4/5  recon_loss=3.5549
+  [预训练] epoch 5/5  recon_loss=3.4252
+  epoch   1  loss=3.5429  val_AP=0.0840  (best@1)
+  epoch  20  loss=1.5199  val_AP=0.2083  (best@20)
+  epoch  40  loss=1.3965  val_AP=0.2207  (best@40)
+  epoch  60  loss=1.2763  val_AP=0.2375  (best@60)
+  epoch  80  loss=1.2184  val_AP=0.2480  (best@80)
+  epoch 100  loss=1.1883  val_AP=0.2602  (best@100)
+  [结果] dysat_static: AP=0.4452 F1=0.5373 w3=0.6840 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.1507
+  [预训练] epoch 2/5  recon_loss=3.9846
+  [预训练] epoch 3/5  recon_loss=3.8653
+  [预训练] epoch 4/5  recon_loss=3.7835
+  [预训练] epoch 5/5  recon_loss=3.7150
+  epoch   1  loss=3.3558  val_AP=0.0922  (best@1)
+  epoch  20  loss=1.3823  val_AP=0.2024  (best@4)
+  epoch  40  loss=1.2805  val_AP=0.3106  (best@40)
+  epoch  60  loss=1.2249  val_AP=0.3804  (best@60)
+  epoch  80  loss=1.2016  val_AP=0.4142  (best@79)
+  epoch 100  loss=1.1772  val_AP=0.4291  (best@100)
+  [结果] graphmamba_static: AP=0.5949 F1=0.5751 w3=0.6919 params=11,032  [已落盘]
+
+######################################################################
+# 种子 44 (3/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.1302
+  [预训练] epoch 2/5  recon_loss=3.9398
+  [预训练] epoch 3/5  recon_loss=3.7279
+  [预训练] epoch 4/5  recon_loss=3.6068
+  [预训练] epoch 5/5  recon_loss=3.4097
+  epoch   1  loss=3.5779  val_AP=0.0833  (best@1)
+  epoch  20  loss=1.4939  val_AP=0.2067  (best@19)
+  epoch  40  loss=1.3919  val_AP=0.2193  (best@40)
+  epoch  60  loss=1.3395  val_AP=0.2287  (best@56)
+  epoch  80  loss=1.2752  val_AP=0.2439  (best@80)
+  epoch 100  loss=1.2230  val_AP=0.2550  (best@100)
+  [结果] dysat_static: AP=0.4153 F1=0.5283 w3=0.6768 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0874
+  [预训练] epoch 2/5  recon_loss=3.9739
+  [预训练] epoch 3/5  recon_loss=3.8457
+  [预训练] epoch 4/5  recon_loss=3.8074
+  [预训练] epoch 5/5  recon_loss=3.6718
+  epoch   1  loss=3.4309  val_AP=0.0821  (best@1)
+  epoch  20  loss=1.4034  val_AP=0.2108  (best@10)
+  epoch  40  loss=1.2893  val_AP=0.2499  (best@40)
+  epoch  60  loss=1.2395  val_AP=0.3568  (best@60)
+  epoch  80  loss=1.2101  val_AP=0.3965  (best@80)
+  epoch 100  loss=1.1871  val_AP=0.4135  (best@98)
+  [结果] graphmamba_static: AP=0.5875 F1=0.5765 w3=0.6908 params=11,032  [已落盘]
+
+######################################################################
+# 种子 45 (4/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1348
+  [预训练] epoch 2/5  recon_loss=3.9198
+  [预训练] epoch 3/5  recon_loss=3.7375
+  [预训练] epoch 4/5  recon_loss=3.5954
+  [预训练] epoch 5/5  recon_loss=3.4249
+  epoch   1  loss=3.2989  val_AP=0.1539  (best@1)
+  epoch  20  loss=1.5001  val_AP=0.2033  (best@14)
+  epoch  40  loss=1.4209  val_AP=0.2135  (best@34)
+  epoch  60  loss=1.3085  val_AP=0.2319  (best@60)
+  epoch  80  loss=1.2132  val_AP=0.2474  (best@80)
+  epoch 100  loss=1.1632  val_AP=0.2746  (best@100)
+  [结果] dysat_static: AP=0.4778 F1=0.5548 w3=0.6931 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1058
+  [预训练] epoch 2/5  recon_loss=3.9423
+  [预训练] epoch 3/5  recon_loss=3.8406
+  [预训练] epoch 4/5  recon_loss=3.7629
+  [预训练] epoch 5/5  recon_loss=3.6418
+  epoch   1  loss=3.9508  val_AP=0.0635  (best@1)
+  epoch  20  loss=1.4394  val_AP=0.2103  (best@10)
+  epoch  40  loss=1.3060  val_AP=0.2538  (best@40)
+  epoch  60  loss=1.2496  val_AP=0.3547  (best@55)
+  epoch  80  loss=1.2198  val_AP=0.4083  (best@80)
+  epoch 100  loss=1.1880  val_AP=0.4315  (best@98)
+  [结果] graphmamba_static: AP=0.6046 F1=0.5801 w3=0.6957 params=11,032  [已落盘]
+
+######################################################################
+# 种子 46 (5/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1600
+  [预训练] epoch 2/5  recon_loss=3.9244
+  [预训练] epoch 3/5  recon_loss=3.7539
+  [预训练] epoch 4/5  recon_loss=3.5675
+  [预训练] epoch 5/5  recon_loss=3.4549
+  epoch   1  loss=3.6049  val_AP=0.0755  (best@1)
+  epoch  20  loss=1.5193  val_AP=0.1970  (best@16)
+  epoch  40  loss=1.4349  val_AP=0.2107  (best@16)
+  epoch  60  loss=1.3757  val_AP=0.2159  (best@60)
+  epoch  80  loss=1.2841  val_AP=0.2326  (best@80)
+  epoch 100  loss=1.2210  val_AP=0.2475  (best@100)
+  [结果] dysat_static: AP=0.4148 F1=0.5481 w3=0.6923 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1297
+  [预训练] epoch 2/5  recon_loss=3.9609
+  [预训练] epoch 3/5  recon_loss=3.8762
+  [预训练] epoch 4/5  recon_loss=3.7651
+  [预训练] epoch 5/5  recon_loss=3.7239
+  epoch   1  loss=3.4918  val_AP=0.0605  (best@1)
+  epoch  20  loss=1.4461  val_AP=0.2124  (best@10)
+  epoch  40  loss=1.3366  val_AP=0.2315  (best@40)
+  epoch  60  loss=1.2586  val_AP=0.3570  (best@60)
+  epoch  80  loss=1.2229  val_AP=0.3921  (best@80)
+  epoch 100  loss=1.1919  val_AP=0.4085  (best@99)
+  [结果] graphmamba_static: AP=0.5839 F1=0.5687 w3=0.6953 params=11,032  [已落盘]
+
+######################################################################
+# 种子 47 (6/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1530
+  [预训练] epoch 2/5  recon_loss=3.9186
+  [预训练] epoch 3/5  recon_loss=3.7425
+  [预训练] epoch 4/5  recon_loss=3.5695
+  [预训练] epoch 5/5  recon_loss=3.4420
+  epoch   1  loss=3.5077  val_AP=0.0733  (best@1)
+  epoch  20  loss=1.5095  val_AP=0.1996  (best@16)
+  epoch  40  loss=1.4218  val_AP=0.2099  (best@40)
+  epoch  60  loss=1.3388  val_AP=0.2180  (best@60)
+  epoch  80  loss=1.2477  val_AP=0.2369  (best@80)
+  epoch 100  loss=1.2008  val_AP=0.2528  (best@100)
+  [结果] dysat_static: AP=0.4000 F1=0.5112 w3=0.6684 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.0932
+  [预训练] epoch 2/5  recon_loss=3.9142
+  [预训练] epoch 3/5  recon_loss=3.8120
+  [预训练] epoch 4/5  recon_loss=3.7094
+  [预训练] epoch 5/5  recon_loss=3.6402
+  epoch   1  loss=3.2661  val_AP=0.1328  (best@1)
+  epoch  20  loss=1.3924  val_AP=0.2131  (best@7)
+  epoch  40  loss=1.2913  val_AP=0.2786  (best@40)
+  epoch  60  loss=1.2364  val_AP=0.3629  (best@58)
+  epoch  80  loss=1.1974  val_AP=0.4098  (best@79)
+  epoch 100  loss=1.1825  val_AP=0.4235  (best@100)
+  [结果] graphmamba_static: AP=0.5978 F1=0.5628 w3=0.6870 params=11,032  [已落盘]
+
+######################################################################
+# 种子 48 (7/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1109
+  [预训练] epoch 2/5  recon_loss=3.9415
+  [预训练] epoch 3/5  recon_loss=3.7444
+  [预训练] epoch 4/5  recon_loss=3.5596
+  [预训练] epoch 5/5  recon_loss=3.4101
+  epoch   1  loss=3.5083  val_AP=0.1024  (best@1)
+  epoch  20  loss=1.4684  val_AP=0.2042  (best@13)
+  epoch  40  loss=1.3921  val_AP=0.2234  (best@39)
+  epoch  60  loss=1.3334  val_AP=0.2362  (best@58)
+  epoch  80  loss=1.2635  val_AP=0.2560  (best@78)
+  epoch 100  loss=1.2077  val_AP=0.2879  (best@100)
+  [结果] dysat_static: AP=0.4679 F1=0.5305 w3=0.6729 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.1270
+  [预训练] epoch 2/5  recon_loss=4.0239
+  [预训练] epoch 3/5  recon_loss=3.9054
+  [预训练] epoch 4/5  recon_loss=3.7963
+  [预训练] epoch 5/5  recon_loss=3.7113
+  epoch   1  loss=3.4744  val_AP=0.1033  (best@1)
+  epoch  20  loss=1.3941  val_AP=0.2141  (best@7)
+  epoch  40  loss=1.2908  val_AP=0.2513  (best@7)
+  epoch  60  loss=1.2383  val_AP=0.3714  (best@60)
+  epoch  80  loss=1.2155  val_AP=0.3956  (best@80)
+  epoch 100  loss=1.1900  val_AP=0.4097  (best@100)
+  [结果] graphmamba_static: AP=0.5850 F1=0.5665 w3=0.6883 params=11,032  [已落盘]
+
+######################################################################
+# 种子 49 (8/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1619
+  [预训练] epoch 2/5  recon_loss=3.9270
+  [预训练] epoch 3/5  recon_loss=3.7647
+  [预训练] epoch 4/5  recon_loss=3.5786
+  [预训练] epoch 5/5  recon_loss=3.4321
+  epoch   1  loss=3.4462  val_AP=0.1177  (best@1)
+  epoch  20  loss=1.4861  val_AP=0.2128  (best@20)
+  epoch  40  loss=1.3835  val_AP=0.2220  (best@37)
+  epoch  60  loss=1.3069  val_AP=0.2426  (best@60)
+  epoch  80  loss=1.2348  val_AP=0.2643  (best@80)
+  epoch 100  loss=1.1778  val_AP=0.2965  (best@100)
+  [结果] dysat_static: AP=0.4937 F1=0.5342 w3=0.6792 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1152
+  [预训练] epoch 2/5  recon_loss=3.9395
+  [预训练] epoch 3/5  recon_loss=3.8597
+  [预训练] epoch 4/5  recon_loss=3.7539
+  [预训练] epoch 5/5  recon_loss=3.6693
+  epoch   1  loss=3.3349  val_AP=0.0338  (best@1)
+  epoch  20  loss=1.4159  val_AP=0.2166  (best@9)
+  epoch  40  loss=1.3031  val_AP=0.2507  (best@40)
+  epoch  60  loss=1.2411  val_AP=0.3773  (best@60)
+  epoch  80  loss=1.2122  val_AP=0.3967  (best@74)
+  epoch 100  loss=1.1857  val_AP=0.4150  (best@98)
+  [结果] graphmamba_static: AP=0.5852 F1=0.5705 w3=0.6838 params=11,032  [已落盘]
+
+######################################################################
+# 种子 50 (9/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.0889
+  [预训练] epoch 2/5  recon_loss=3.8746
+  [预训练] epoch 3/5  recon_loss=3.6989
+  [预训练] epoch 4/5  recon_loss=3.5279
+  [预训练] epoch 5/5  recon_loss=3.3792
+  epoch   1  loss=3.4279  val_AP=0.1042  (best@1)
+  epoch  20  loss=1.5153  val_AP=0.2023  (best@15)
+  epoch  40  loss=1.4274  val_AP=0.2044  (best@15)
+  epoch  60  loss=1.3472  val_AP=0.2137  (best@60)
+  epoch  80  loss=1.2690  val_AP=0.2356  (best@80)
+  epoch 100  loss=1.2074  val_AP=0.2478  (best@100)
+  [结果] dysat_static: AP=0.4049 F1=0.5105 w3=0.6592 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.0914
+  [预训练] epoch 2/5  recon_loss=3.9565
+  [预训练] epoch 3/5  recon_loss=3.8612
+  [预训练] epoch 4/5  recon_loss=3.7574
+  [预训练] epoch 5/5  recon_loss=3.6706
+  epoch   1  loss=2.9376  val_AP=0.1388  (best@1)
+  epoch  20  loss=1.3873  val_AP=0.2111  (best@7)
+  epoch  40  loss=1.2815  val_AP=0.2709  (best@40)
+  epoch  60  loss=1.2367  val_AP=0.3786  (best@52)
+  epoch  80  loss=1.1970  val_AP=0.4254  (best@80)
+  epoch 100  loss=1.1696  val_AP=0.4360  (best@99)
+  [结果] graphmamba_static: AP=0.6120 F1=0.5876 w3=0.7080 params=11,032  [已落盘]
+
+######################################################################
+# 种子 51 (10/10)
+######################################################################
+
+>>> 训练模型: dysat_static (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1206
+  [预训练] epoch 2/5  recon_loss=3.9426
+  [预训练] epoch 3/5  recon_loss=3.7547
+  [预训练] epoch 4/5  recon_loss=3.5878
+  [预训练] epoch 5/5  recon_loss=3.4414
+  epoch   1  loss=3.4397  val_AP=0.0976  (best@1)
+  epoch  20  loss=1.5063  val_AP=0.2087  (best@10)
+  epoch  40  loss=1.4273  val_AP=0.2132  (best@35)
+  epoch  60  loss=1.3365  val_AP=0.2255  (best@60)
+  epoch  80  loss=1.2406  val_AP=0.2391  (best@80)
+  epoch 100  loss=1.2022  val_AP=0.2483  (best@100)
+  [结果] dysat_static: AP=0.3961 F1=0.5321 w3=0.6806 params=7,062  [已落盘]
+
+>>> 训练模型: graphmamba_static (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1748
+  [预训练] epoch 2/5  recon_loss=4.0387
+  [预训练] epoch 3/5  recon_loss=3.9312
+  [预训练] epoch 4/5  recon_loss=3.8440
+  [预训练] epoch 5/5  recon_loss=3.7713
+  epoch   1  loss=3.6336  val_AP=0.0807  (best@1)
+  epoch  20  loss=1.4304  val_AP=0.2157  (best@6)
+  epoch  40  loss=1.2965  val_AP=0.2746  (best@6)
+  epoch  60  loss=1.2340  val_AP=0.3850  (best@60)
+  epoch  80  loss=1.2043  val_AP=0.4148  (best@80)
+  epoch 100  loss=1.1881  val_AP=0.4334  (best@98)
+  [结果] graphmamba_static: AP=0.5964 F1=0.5815 w3=0.6940 params=11,032  [已落盘]
+[汇总] 共 20 行 (TGM-Lite_审计结果_supervised_amlsim_static10_seeds_raw.csv)
+
+====================================================================================================
+多种子聚合 (mean±std)
+====================================================================================================
+model             n              AUC               AP               F1           w3漂移F1
+---------------------------------------------------------------------------------------
+dysat_static     10    0.9640±0.0017    0.4331±0.0335    0.5301±0.0142    0.6771±0.0106
+graphmamba_static 10    0.9594±0.0010    0.5948±0.0089    0.5746±0.0072    0.6925±0.0062
+====================================================================================================
+[保存] 聚合结果已写入 TGM-Lite_审计结果_supervised_amlsim_static10_seeds.csv
+
+==============================================================================
+崩溃规则汇总 (w3 = 尾窗 F1, 验证最优阈值)
+==============================================================================
+model              n         w3 mean±std   min w3  w3<0.6  Δw3>0.1
+------------------------------------------------------------------
+dysat_static      10       0.6771±0.0106   0.6592    0 []        -
+graphmamba_static  10       0.6925±0.0062   0.6838    0 []        -
+==============================================================================
+e_date-time:周五 2026/10/16-12:27:06.10

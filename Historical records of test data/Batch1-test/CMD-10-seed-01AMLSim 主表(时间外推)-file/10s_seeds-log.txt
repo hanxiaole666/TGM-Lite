@@ -1,0 +1,1027 @@
+D:\TGM-Lite>C:\Users\apple\anaconda3\python.exe experiments.py --data amlsim --model all --epochs 100 --pretrain_epochs 5 --seeds 42,43,44,45,46,47,48,49,50,51 --tag _10s
+[环境] device=cuda  torch=2.2.1
+[数据] 使用本地文件: D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv
+[数据] 读取 D:\TGM-Lite\Data\ealtman2019\HI-Small_Trans.csv ...
+[数据] 原始交易 5,078,345 笔, 列: ['Timestamp', 'From Bank', 'Account', 'To Bank', 'Account.1', 'Amount Received', 'Receiving Currency', 'Amount Paid', 'Payment Currency', 'Payment Format', 'Is Laundering']
+[数据] 子采样: 300,000 笔 (洗钱 5,177 全部保留, 占比 1.73%)
+[数据] AMLSim HI-Small: N=300,000, E=406,673, T=60, 特征 21 维, 洗钱 1.73% (分箱=quantile, 每窗节点 4,396~5,520, 团边=开)
+[自适应] AMLSim 时间划分: 训练 1-36 | 验证 37-48 | 测试 49-60
+[自适应] 节点规模较大, chunk 8 -> 4 (防显存溢出)
+[自适应] PU 先验 π = 训练区洗钱率 = 0.0129
+[划分] 训练 t=1-36 | 验证 t=37-48 | 测试 t=49-60  (严格时间外推)
+
+######################################################################
+# 种子 42 (1/10)
+######################################################################
+
+>>> 训练模型: rf (seed=42)
+
+>>> 训练模型: mlp (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1161
+  [预训练] epoch 2/5  recon_loss=3.9570
+  [预训练] epoch 3/5  recon_loss=3.8446
+  [预训练] epoch 4/5  recon_loss=3.7645
+  [预训练] epoch 5/5  recon_loss=3.6524
+  epoch   1  loss=3.2895  val_AP=0.1197  (best@1)
+  epoch  20  loss=1.4279  val_AP=0.1781  (best@4)
+  epoch  40  loss=1.3277  val_AP=0.2046  (best@40)
+  epoch  60  loss=1.2808  val_AP=0.3129  (best@60)
+  epoch  80  loss=1.2625  val_AP=0.3461  (best@78)
+  epoch 100  loss=1.2364  val_AP=0.3722  (best@99)
+
+>>> 训练模型: gcn (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1080
+  [预训练] epoch 2/5  recon_loss=3.9546
+  [预训练] epoch 3/5  recon_loss=3.8448
+  [预训练] epoch 4/5  recon_loss=3.7659
+  [预训练] epoch 5/5  recon_loss=3.6555
+  epoch   1  loss=3.3070  val_AP=0.0853  (best@1)
+  epoch  20  loss=1.4122  val_AP=0.2101  (best@5)
+  epoch  40  loss=1.2865  val_AP=0.2667  (best@40)
+  epoch  60  loss=1.2278  val_AP=0.3786  (best@59)
+  epoch  80  loss=1.2014  val_AP=0.4163  (best@79)
+  epoch 100  loss=1.1730  val_AP=0.4347  (best@100)
+  [图门控] λ1=0.172  λ2=0.165  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1119
+  [预训练] epoch 2/5  recon_loss=3.9513
+  [预训练] epoch 3/5  recon_loss=3.8387
+  [预训练] epoch 4/5  recon_loss=3.7571
+  [预训练] epoch 5/5  recon_loss=3.6420
+  epoch   1  loss=3.2934  val_AP=0.0989  (best@1)
+  epoch  20  loss=1.4015  val_AP=0.2140  (best@19)
+  epoch  40  loss=1.2478  val_AP=0.2898  (best@40)
+  epoch  60  loss=1.1928  val_AP=0.3601  (best@58)
+  epoch  80  loss=1.1647  val_AP=0.3348  (best@58)
+  epoch 100  loss=1.1285  val_AP=0.3312  (best@58)
+  [图门控] λ1=0.176  λ2=0.166  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1167
+  [预训练] epoch 2/5  recon_loss=3.9511
+  [预训练] epoch 3/5  recon_loss=3.8337
+  [预训练] epoch 4/5  recon_loss=3.7475
+  [预训练] epoch 5/5  recon_loss=3.6268
+  epoch   1  loss=3.2954  val_AP=0.1189  (best@1)
+  epoch  20  loss=1.4280  val_AP=0.1818  (best@4)
+  epoch  40  loss=1.3225  val_AP=0.2282  (best@40)
+  epoch  60  loss=1.2542  val_AP=0.2801  (best@56)
+  epoch  80  loss=1.2298  val_AP=0.3086  (best@56)
+  epoch 100  loss=1.2001  val_AP=0.3424  (best@94)
+
+>>> 训练模型: tgmlite_nossm (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1075
+  [预训练] epoch 2/5  recon_loss=3.9484
+  [预训练] epoch 3/5  recon_loss=3.8359
+  [预训练] epoch 4/5  recon_loss=3.7533
+  [预训练] epoch 5/5  recon_loss=3.6368
+  epoch   1  loss=3.2962  val_AP=0.0992  (best@1)
+  epoch  20  loss=1.4115  val_AP=0.2139  (best@20)
+  epoch  40  loss=1.2673  val_AP=0.3039  (best@40)
+  epoch  60  loss=1.1990  val_AP=0.3815  (best@59)
+  epoch  80  loss=1.1668  val_AP=0.4180  (best@80)
+  epoch 100  loss=1.1347  val_AP=0.4237  (best@98)
+  [图门控] λ1=0.175  λ2=0.166  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=42)
+  [预训练] epoch 1/5  recon_loss=4.1086
+  [预训练] epoch 2/5  recon_loss=3.9488
+  [预训练] epoch 3/5  recon_loss=3.8341
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6310
+  epoch   1  loss=3.3134  val_AP=0.0916  (best@1)
+  epoch  20  loss=1.4023  val_AP=0.2085  (best@18)
+  epoch  40  loss=1.2782  val_AP=0.3018  (best@40)
+  epoch  60  loss=1.2257  val_AP=0.3826  (best@53)
+  epoch  80  loss=1.1881  val_AP=0.4137  (best@80)
+  epoch 100  loss=1.1509  val_AP=0.3780  (best@80)
+  [图门控] λ1=0.175  λ2=0.170  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9166  0.4175  0.4450  0.4313  0.4596  0.7600       0.225/0.355/0.549     14.82        0    238.6
+mlp                13,080  0.9452  0.5238  0.5229  0.4970  0.5516  0.7600       0.315/0.400/0.635      0.40     1519   1693.1
+gcn                13,080  0.9619  0.5984  0.5799  0.5455  0.6190  0.8900       0.364/0.424/0.694      1.98     2847   2797.9
+evolvegcn          20,232  0.9575  0.5571  0.5342  0.4149  0.7497  0.8400       0.363/0.358/0.662      2.03     2847   3193.6
+tgmlite_nograph    65,832  0.9449  0.5085  0.5117  0.4948  0.5297  0.7800       0.326/0.384/0.623      0.44     1520   1763.9
+tgmlite_nossm      15,192  0.9598  0.5835  0.4773  0.7070  0.3603  0.9000       0.324/0.409/0.541      2.02     2847   2902.5
+tgmlite            65,832  0.9611  0.5780  0.5773  0.5413  0.6184  0.8000       0.373/0.415/0.694      2.04     2848   2952.8
+=============================================================================================================================
+
+######################################################################
+# 种子 43 (2/10)
+######################################################################
+
+>>> 训练模型: rf (seed=43)
+
+>>> 训练模型: mlp (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0748
+  [预训练] epoch 2/5  recon_loss=3.9354
+  [预训练] epoch 3/5  recon_loss=3.8254
+  [预训练] epoch 4/5  recon_loss=3.7436
+  [预训练] epoch 5/5  recon_loss=3.6602
+  epoch   1  loss=3.8058  val_AP=0.0563  (best@1)
+  epoch  20  loss=1.4298  val_AP=0.1763  (best@4)
+  epoch  40  loss=1.3455  val_AP=0.1982  (best@40)
+  epoch  60  loss=1.2907  val_AP=0.3107  (best@60)
+  epoch  80  loss=1.2619  val_AP=0.3361  (best@80)
+  epoch 100  loss=1.2483  val_AP=0.3640  (best@100)
+
+>>> 训练模型: gcn (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0683
+  [预训练] epoch 2/5  recon_loss=3.9332
+  [预训练] epoch 3/5  recon_loss=3.8249
+  [预训练] epoch 4/5  recon_loss=3.7442
+  [预训练] epoch 5/5  recon_loss=3.6612
+  epoch   1  loss=3.7992  val_AP=0.0383  (best@1)
+  epoch  20  loss=1.3965  val_AP=0.2161  (best@8)
+  epoch  40  loss=1.2923  val_AP=0.2874  (best@40)
+  epoch  60  loss=1.2358  val_AP=0.3827  (best@58)
+  epoch  80  loss=1.2025  val_AP=0.4103  (best@80)
+  epoch 100  loss=1.1887  val_AP=0.4359  (best@99)
+  [图门控] λ1=0.171  λ2=0.158  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0654
+  [预训练] epoch 2/5  recon_loss=3.9223
+  [预训练] epoch 3/5  recon_loss=3.8084
+  [预训练] epoch 4/5  recon_loss=3.7217
+  [预训练] epoch 5/5  recon_loss=3.6302
+  epoch   1  loss=3.8279  val_AP=0.0358  (best@1)
+  epoch  20  loss=1.4050  val_AP=0.1868  (best@8)
+  epoch  40  loss=1.2753  val_AP=0.3657  (best@40)
+  epoch  60  loss=1.2086  val_AP=0.3714  (best@48)
+  epoch  80  loss=1.1678  val_AP=0.3905  (best@70)
+  epoch 100  loss=1.1470  val_AP=0.3976  (best@70)
+  [图门控] λ1=0.173  λ2=0.156  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0746
+  [预训练] epoch 2/5  recon_loss=3.9272
+  [预训练] epoch 3/5  recon_loss=3.8092
+  [预训练] epoch 4/5  recon_loss=3.7160
+  [预训练] epoch 5/5  recon_loss=3.6182
+  epoch   1  loss=3.8240  val_AP=0.0533  (best@1)
+  epoch  20  loss=1.4390  val_AP=0.1709  (best@7)
+  epoch  40  loss=1.3228  val_AP=0.2176  (best@40)
+  epoch  60  loss=1.2522  val_AP=0.3048  (best@58)
+  epoch  80  loss=1.2222  val_AP=0.2944  (best@58)
+  epoch 100  loss=1.2049  val_AP=0.3485  (best@99)
+
+>>> 训练模型: tgmlite_nossm (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0688
+  [预训练] epoch 2/5  recon_loss=3.9265
+  [预训练] epoch 3/5  recon_loss=3.8112
+  [预训练] epoch 4/5  recon_loss=3.7220
+  [预训练] epoch 5/5  recon_loss=3.6271
+  epoch   1  loss=3.8308  val_AP=0.0911  (best@1)
+  epoch  20  loss=1.4018  val_AP=0.2066  (best@7)
+  epoch  40  loss=1.2564  val_AP=0.3561  (best@40)
+  epoch  60  loss=1.1974  val_AP=0.4033  (best@57)
+  epoch  80  loss=1.1596  val_AP=0.4093  (best@72)
+  epoch 100  loss=1.1384  val_AP=0.4250  (best@99)
+  [图门控] λ1=0.172  λ2=0.153  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=43)
+  [预训练] epoch 1/5  recon_loss=4.0682
+  [预训练] epoch 2/5  recon_loss=3.9251
+  [预训练] epoch 3/5  recon_loss=3.8090
+  [预训练] epoch 4/5  recon_loss=3.7173
+  [预训练] epoch 5/5  recon_loss=3.6202
+  epoch   1  loss=3.8131  val_AP=0.0674  (best@1)
+  epoch  20  loss=1.4050  val_AP=0.1949  (best@8)
+  epoch  40  loss=1.2725  val_AP=0.3770  (best@40)
+  epoch  60  loss=1.2270  val_AP=0.4008  (best@60)
+  epoch  80  loss=1.1923  val_AP=0.4217  (best@79)
+  epoch 100  loss=1.1749  val_AP=0.4274  (best@97)
+  [图门控] λ1=0.174  λ2=0.159  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9179  0.4190  0.4454  0.4330  0.4585  0.7400       0.209/0.359/0.553     16.25        0    264.9
+mlp                13,080  0.9441  0.5086  0.5043  0.4869  0.5230  0.7900       0.290/0.386/0.619      0.41     1519   1772.0
+gcn                13,080  0.9576  0.6037  0.5789  0.5433  0.6195  0.9100       0.360/0.425/0.695      1.98     2847   2769.4
+evolvegcn          20,232  0.9570  0.5819  0.5451  0.4321  0.7379  0.8700       0.370/0.380/0.668      2.09     2847   3072.3
+tgmlite_nograph    65,832  0.9310  0.2983  0.1547  0.3365  0.1004  0.4700       0.293/0.330/0.000      0.44     1520   1808.2
+tgmlite_nossm      15,192  0.9580  0.5967  0.4381  0.7863  0.3036  0.9200       0.303/0.338/0.499      2.02     2847   2819.1
+tgmlite            65,832  0.9598  0.6054  0.5658  0.4839  0.6813  0.9500       0.366/0.402/0.688      2.04     2848   2900.3
+=============================================================================================================================
+
+######################################################################
+# 种子 44 (3/10)
+######################################################################
+
+>>> 训练模型: rf (seed=44)
+
+>>> 训练模型: mlp (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.1030
+  [预训练] epoch 2/5  recon_loss=3.9832
+  [预训练] epoch 3/5  recon_loss=3.8559
+  [预训练] epoch 4/5  recon_loss=3.8175
+  [预训练] epoch 5/5  recon_loss=3.6838
+  epoch   1  loss=3.1452  val_AP=0.0505  (best@1)
+  epoch  20  loss=1.4484  val_AP=0.1872  (best@9)
+  epoch  40  loss=1.3614  val_AP=0.1982  (best@40)
+  epoch  60  loss=1.2989  val_AP=0.2769  (best@60)
+  epoch  80  loss=1.2621  val_AP=0.3309  (best@80)
+  epoch 100  loss=1.2439  val_AP=0.3634  (best@100)
+
+>>> 训练模型: gcn (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0962
+  [预训练] epoch 2/5  recon_loss=3.9818
+  [预训练] epoch 3/5  recon_loss=3.8570
+  [预训练] epoch 4/5  recon_loss=3.8201
+  [预训练] epoch 5/5  recon_loss=3.6882
+  epoch   1  loss=3.1423  val_AP=0.0481  (best@1)
+  epoch  20  loss=1.4258  val_AP=0.2265  (best@20)
+  epoch  40  loss=1.3117  val_AP=0.2467  (best@40)
+  epoch  60  loss=1.2371  val_AP=0.3835  (best@60)
+  epoch  80  loss=1.2082  val_AP=0.4050  (best@78)
+  epoch 100  loss=1.1927  val_AP=0.4199  (best@100)
+  [图门控] λ1=0.172  λ2=0.159  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0996
+  [预训练] epoch 2/5  recon_loss=3.9781
+  [预训练] epoch 3/5  recon_loss=3.8494
+  [预训练] epoch 4/5  recon_loss=3.8092
+  [预训练] epoch 5/5  recon_loss=3.6733
+  epoch   1  loss=3.1091  val_AP=0.1209  (best@1)
+  epoch  20  loss=1.4042  val_AP=0.2093  (best@7)
+  epoch  40  loss=1.2564  val_AP=0.2765  (best@40)
+  epoch  60  loss=1.1950  val_AP=0.3849  (best@60)
+  epoch  80  loss=1.1607  val_AP=0.3918  (best@75)
+  epoch 100  loss=1.1319  val_AP=0.3782  (best@75)
+  [图门控] λ1=0.168  λ2=0.153  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.1021
+  [预训练] epoch 2/5  recon_loss=3.9734
+  [预训练] epoch 3/5  recon_loss=3.8364
+  [预训练] epoch 4/5  recon_loss=3.7877
+  [预训练] epoch 5/5  recon_loss=3.6434
+  epoch   1  loss=3.1016  val_AP=0.1251  (best@1)
+  epoch  20  loss=1.4350  val_AP=0.1860  (best@20)
+  epoch  40  loss=1.3297  val_AP=0.2143  (best@40)
+  epoch  60  loss=1.2751  val_AP=0.3177  (best@60)
+  epoch  80  loss=1.2212  val_AP=0.3382  (best@80)
+  epoch 100  loss=1.2030  val_AP=0.3548  (best@89)
+
+>>> 训练模型: tgmlite_nossm (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0960
+  [预训练] epoch 2/5  recon_loss=3.9749
+  [预训练] epoch 3/5  recon_loss=3.8452
+  [预训练] epoch 4/5  recon_loss=3.8035
+  [预训练] epoch 5/5  recon_loss=3.6645
+  epoch   1  loss=3.1271  val_AP=0.0866  (best@1)
+  epoch  20  loss=1.4299  val_AP=0.2199  (best@16)
+  epoch  40  loss=1.2876  val_AP=0.2903  (best@40)
+  epoch  60  loss=1.2091  val_AP=0.3846  (best@46)
+  epoch  80  loss=1.1734  val_AP=0.3921  (best@62)
+  epoch 100  loss=1.1561  val_AP=0.4160  (best@95)
+  [图门控] λ1=0.171  λ2=0.156  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=44)
+  [预训练] epoch 1/5  recon_loss=4.0954
+  [预训练] epoch 2/5  recon_loss=3.9722
+  [预训练] epoch 3/5  recon_loss=3.8375
+  [预训练] epoch 4/5  recon_loss=3.7908
+  [预训练] epoch 5/5  recon_loss=3.6487
+  epoch   1  loss=3.0956  val_AP=0.1569  (best@1)
+  epoch  20  loss=1.4299  val_AP=0.2279  (best@20)
+  epoch  40  loss=1.2899  val_AP=0.3053  (best@40)
+  epoch  60  loss=1.2267  val_AP=0.3925  (best@60)
+  epoch  80  loss=1.1997  val_AP=0.4151  (best@77)
+  epoch 100  loss=1.1789  val_AP=0.4284  (best@96)
+  [图门控] λ1=0.172  λ2=0.156  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9171  0.4190  0.4461  0.4319  0.4613  0.8100       0.224/0.348/0.556     16.37        0    245.8
+mlp                13,080  0.9435  0.5029  0.5096  0.4790  0.5443  0.7300       0.318/0.388/0.619      0.42     1519   1945.0
+gcn                13,080  0.9573  0.5939  0.5848  0.5511  0.6229  0.9300       0.385/0.426/0.697      2.36     2847   2827.4
+evolvegcn          20,232  0.9513  0.5135  0.4310  0.6231  0.3294  0.7400       0.321/0.396/0.477      1.97     2847   2831.3
+tgmlite_nograph    65,832  0.9437  0.5113  0.5034  0.5365  0.4742  0.7600       0.310/0.408/0.593      0.42     1520   1735.1
+tgmlite_nossm      15,192  0.9559  0.5782  0.3487  0.7812  0.2245  0.8700       0.235/0.256/0.403      1.97     2847   2785.8
+tgmlite            65,832  0.9581  0.6065  0.5829  0.5461  0.6251  0.9400       0.380/0.421/0.698      1.99     2848   2793.0
+=============================================================================================================================
+
+######################################################################
+# 种子 45 (4/10)
+######################################################################
+
+>>> 训练模型: rf (seed=45)
+
+>>> 训练模型: mlp (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1214
+  [预训练] epoch 2/5  recon_loss=3.9517
+  [预训练] epoch 3/5  recon_loss=3.8427
+  [预训练] epoch 4/5  recon_loss=3.7605
+  [预训练] epoch 5/5  recon_loss=3.6464
+  epoch   1  loss=3.5881  val_AP=0.0375  (best@1)
+  epoch  20  loss=1.4140  val_AP=0.1710  (best@10)
+  epoch  40  loss=1.3304  val_AP=0.2070  (best@40)
+  epoch  60  loss=1.2931  val_AP=0.3112  (best@59)
+  epoch  80  loss=1.2733  val_AP=0.3283  (best@80)
+  epoch 100  loss=1.2595  val_AP=0.3576  (best@99)
+
+>>> 训练模型: gcn (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1185
+  [预训练] epoch 2/5  recon_loss=3.9538
+  [预训练] epoch 3/5  recon_loss=3.8479
+  [预训练] epoch 4/5  recon_loss=3.7706
+  [预训练] epoch 5/5  recon_loss=3.6610
+  epoch   1  loss=3.5807  val_AP=0.0431  (best@1)
+  epoch  20  loss=1.3979  val_AP=0.1970  (best@10)
+  epoch  40  loss=1.2902  val_AP=0.2592  (best@40)
+  epoch  60  loss=1.2360  val_AP=0.3669  (best@60)
+  epoch  80  loss=1.2137  val_AP=0.3967  (best@80)
+  epoch 100  loss=1.1936  val_AP=0.4107  (best@100)
+  [图门控] λ1=0.167  λ2=0.165  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1213
+  [预训练] epoch 2/5  recon_loss=3.9490
+  [预训练] epoch 3/5  recon_loss=3.8400
+  [预训练] epoch 4/5  recon_loss=3.7592
+  [预训练] epoch 5/5  recon_loss=3.6462
+  epoch   1  loss=3.5530  val_AP=0.0662  (best@1)
+  epoch  20  loss=1.3876  val_AP=0.2044  (best@8)
+  epoch  40  loss=1.2594  val_AP=0.2943  (best@40)
+  epoch  60  loss=1.2058  val_AP=0.3591  (best@50)
+  epoch  80  loss=1.1772  val_AP=0.3934  (best@80)
+  epoch 100  loss=1.1494  val_AP=0.4121  (best@100)
+  [图门控] λ1=0.168  λ2=0.162  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1212
+  [预训练] epoch 2/5  recon_loss=3.9445
+  [预训练] epoch 3/5  recon_loss=3.8287
+  [预训练] epoch 4/5  recon_loss=3.7382
+  [预训练] epoch 5/5  recon_loss=3.6147
+  epoch   1  loss=3.5692  val_AP=0.0558  (best@1)
+  epoch  20  loss=1.4145  val_AP=0.1825  (best@20)
+  epoch  40  loss=1.3258  val_AP=0.2434  (best@40)
+  epoch  60  loss=1.2888  val_AP=0.3313  (best@60)
+  epoch  80  loss=1.2767  val_AP=0.3370  (best@79)
+  epoch 100  loss=1.2611  val_AP=0.3383  (best@92)
+
+>>> 训练模型: tgmlite_nossm (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1182
+  [预训练] epoch 2/5  recon_loss=3.9480
+  [预训练] epoch 3/5  recon_loss=3.8382
+  [预训练] epoch 4/5  recon_loss=3.7550
+  [预训练] epoch 5/5  recon_loss=3.6365
+  epoch   1  loss=3.5927  val_AP=0.0562  (best@1)
+  epoch  20  loss=1.3862  val_AP=0.2075  (best@8)
+  epoch  40  loss=1.2571  val_AP=0.3137  (best@40)
+  epoch  60  loss=1.2017  val_AP=0.3754  (best@60)
+  epoch  80  loss=1.1685  val_AP=0.4004  (best@80)
+  epoch 100  loss=1.1391  val_AP=0.4090  (best@98)
+  [图门控] λ1=0.170  λ2=0.162  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=45)
+  [预训练] epoch 1/5  recon_loss=4.1181
+  [预训练] epoch 2/5  recon_loss=3.9464
+  [预训练] epoch 3/5  recon_loss=3.8336
+  [预训练] epoch 4/5  recon_loss=3.7474
+  [预训练] epoch 5/5  recon_loss=3.6284
+  epoch   1  loss=3.5743  val_AP=0.0672  (best@1)
+  epoch  20  loss=1.3860  val_AP=0.2140  (best@8)
+  epoch  40  loss=1.2772  val_AP=0.3175  (best@40)
+  epoch  60  loss=1.2322  val_AP=0.3845  (best@60)
+  epoch  80  loss=1.2074  val_AP=0.4158  (best@74)
+  epoch 100  loss=1.1759  val_AP=0.4250  (best@96)
+  [图门控] λ1=0.170  λ2=0.164  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9182  0.4200  0.4411  0.4299  0.4529  0.7800       0.218/0.358/0.544     15.53        0    467.3
+mlp                13,080  0.9434  0.5015  0.4942  0.5291  0.4635  0.7900       0.276/0.401/0.591      0.40     1519   1640.3
+gcn                13,080  0.9601  0.5825  0.5451  0.4405  0.7149  0.8600       0.351/0.370/0.676      1.97     2847   2820.4
+evolvegcn          20,232  0.9589  0.5114  0.4946  0.5723  0.4355  0.7600       0.366/0.396/0.578      1.99     2847   2901.6
+tgmlite_nograph    65,832  0.9433  0.4918  0.4961  0.4793  0.5140  0.8100       0.296/0.374/0.606      0.43     1520   1694.1
+tgmlite_nossm      15,192  0.9583  0.5912  0.4236  0.7684  0.2924  0.9400       0.175/0.336/0.501      2.00     2847   2815.7
+tgmlite            65,832  0.9612  0.5882  0.5771  0.5437  0.6150  0.8700       0.355/0.413/0.698      2.00     2848   2851.7
+=============================================================================================================================
+
+######################################################################
+# 种子 46 (5/10)
+######################################################################
+
+>>> 训练模型: rf (seed=46)
+
+>>> 训练模型: mlp (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1234
+  [预训练] epoch 2/5  recon_loss=3.9465
+  [预训练] epoch 3/5  recon_loss=3.8585
+  [预训练] epoch 4/5  recon_loss=3.7487
+  [预训练] epoch 5/5  recon_loss=3.7076
+  epoch   1  loss=3.5696  val_AP=0.0162  (best@1)
+  epoch  20  loss=1.4656  val_AP=0.1891  (best@10)
+  epoch  40  loss=1.3798  val_AP=0.1887  (best@10)
+  epoch  60  loss=1.3098  val_AP=0.2849  (best@60)
+  epoch  80  loss=1.2807  val_AP=0.3298  (best@80)
+  epoch 100  loss=1.2594  val_AP=0.3570  (best@100)
+
+>>> 训练模型: gcn (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1178
+  [预训练] epoch 2/5  recon_loss=3.9449
+  [预训练] epoch 3/5  recon_loss=3.8585
+  [预训练] epoch 4/5  recon_loss=3.7497
+  [预训练] epoch 5/5  recon_loss=3.7111
+  epoch   1  loss=3.5653  val_AP=0.0158  (best@1)
+  epoch  20  loss=1.4424  val_AP=0.2222  (best@11)
+  epoch  40  loss=1.3202  val_AP=0.2415  (best@40)
+  epoch  60  loss=1.2441  val_AP=0.3499  (best@60)
+  epoch  80  loss=1.2145  val_AP=0.4039  (best@80)
+  epoch 100  loss=1.1867  val_AP=0.4202  (best@93)
+  [图门控] λ1=0.170  λ2=0.170  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1151
+  [预训练] epoch 2/5  recon_loss=3.9383
+  [预训练] epoch 3/5  recon_loss=3.8484
+  [预训练] epoch 4/5  recon_loss=3.7349
+  [预训练] epoch 5/5  recon_loss=3.6889
+  epoch   1  loss=3.5556  val_AP=0.0203  (best@1)
+  epoch  20  loss=1.4163  val_AP=0.2091  (best@8)
+  epoch  40  loss=1.2787  val_AP=0.2556  (best@40)
+  epoch  60  loss=1.2029  val_AP=0.3828  (best@59)
+  epoch  80  loss=1.1734  val_AP=0.4124  (best@80)
+  epoch 100  loss=1.1360  val_AP=0.4118  (best@93)
+  [图门控] λ1=0.170  λ2=0.164  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1228
+  [预训练] epoch 2/5  recon_loss=3.9409
+  [预训练] epoch 3/5  recon_loss=3.8485
+  [预训练] epoch 4/5  recon_loss=3.7332
+  [预训练] epoch 5/5  recon_loss=3.6823
+  epoch   1  loss=3.5589  val_AP=0.0197  (best@1)
+  epoch  20  loss=1.4481  val_AP=0.1796  (best@8)
+  epoch  40  loss=1.3554  val_AP=0.1953  (best@8)
+  epoch  60  loss=1.2633  val_AP=0.2876  (best@55)
+  epoch  80  loss=1.2368  val_AP=0.2559  (best@62)
+  epoch 100  loss=1.2183  val_AP=0.2800  (best@62)
+
+>>> 训练模型: tgmlite_nossm (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1177
+  [预训练] epoch 2/5  recon_loss=3.9411
+  [预训练] epoch 3/5  recon_loss=3.8523
+  [预训练] epoch 4/5  recon_loss=3.7394
+  [预训练] epoch 5/5  recon_loss=3.6940
+  epoch   1  loss=3.5565  val_AP=0.0176  (best@1)
+  epoch  20  loss=1.4271  val_AP=0.2269  (best@9)
+  epoch  40  loss=1.3172  val_AP=0.2313  (best@9)
+  epoch  60  loss=1.2110  val_AP=0.3791  (best@60)
+  epoch  80  loss=1.1779  val_AP=0.4161  (best@80)
+  epoch 100  loss=1.1429  val_AP=0.4177  (best@85)
+  [图门控] λ1=0.170  λ2=0.168  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=46)
+  [预训练] epoch 1/5  recon_loss=4.1171
+  [预训练] epoch 2/5  recon_loss=3.9391
+  [预训练] epoch 3/5  recon_loss=3.8483
+  [预训练] epoch 4/5  recon_loss=3.7337
+  [预训练] epoch 5/5  recon_loss=3.6853
+  epoch   1  loss=3.5466  val_AP=0.0239  (best@1)
+  epoch  20  loss=1.4240  val_AP=0.2187  (best@8)
+  epoch  40  loss=1.3080  val_AP=0.2471  (best@40)
+  epoch  60  loss=1.2266  val_AP=0.3811  (best@58)
+  epoch  80  loss=1.2062  val_AP=0.4167  (best@80)
+  epoch 100  loss=1.1816  val_AP=0.4236  (best@93)
+  [图门控] λ1=0.170  λ2=0.165  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9148  0.4176  0.4436  0.4311  0.4568  0.7900       0.218/0.359/0.549     17.00        0    353.1
+mlp                13,080  0.9441  0.5023  0.4952  0.5301  0.4646  0.7100       0.263/0.400/0.594      0.42     1519   1703.5
+gcn                13,080  0.9607  0.5816  0.5723  0.5395  0.6094  0.8700       0.367/0.415/0.685      1.97     2847   2776.5
+evolvegcn          20,232  0.9551  0.4886  0.4447  0.5736  0.3631  0.7800       0.373/0.383/0.494      2.00     2847   2789.1
+tgmlite_nograph    65,832  0.9412  0.4651  0.4872  0.4726  0.5028  0.6700       0.307/0.376/0.589      0.42     1520   1934.3
+tgmlite_nossm      15,192  0.9565  0.4796  0.2300  0.6161  0.1414  0.7000       0.263/0.304/0.194      1.99     2847   2741.0
+tgmlite            65,832  0.9599  0.5892  0.5864  0.5483  0.6302  0.8400       0.372/0.425/0.703      1.99     2848   2803.3
+=============================================================================================================================
+
+######################################################################
+# 种子 47 (6/10)
+######################################################################
+
+>>> 训练模型: rf (seed=47)
+
+>>> 训练模型: mlp (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1278
+  [预训练] epoch 2/5  recon_loss=3.9604
+  [预训练] epoch 3/5  recon_loss=3.8685
+  [预训练] epoch 4/5  recon_loss=3.7842
+  [预训练] epoch 5/5  recon_loss=3.7347
+  epoch   1  loss=3.4489  val_AP=0.0894  (best@1)
+  epoch  20  loss=1.4300  val_AP=0.1859  (best@6)
+  epoch  40  loss=1.3422  val_AP=0.1980  (best@6)
+  epoch  60  loss=1.2910  val_AP=0.2768  (best@60)
+  epoch  80  loss=1.2619  val_AP=0.3342  (best@80)
+  epoch 100  loss=1.2480  val_AP=0.3574  (best@99)
+
+>>> 训练模型: gcn (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1250
+  [预训练] epoch 2/5  recon_loss=3.9612
+  [预训练] epoch 3/5  recon_loss=3.8700
+  [预训练] epoch 4/5  recon_loss=3.7848
+  [预训练] epoch 5/5  recon_loss=3.7368
+  epoch   1  loss=3.4553  val_AP=0.0808  (best@1)
+  epoch  20  loss=1.4174  val_AP=0.2205  (best@7)
+  epoch  40  loss=1.3143  val_AP=0.2372  (best@7)
+  epoch  60  loss=1.2388  val_AP=0.3586  (best@60)
+  epoch  80  loss=1.2045  val_AP=0.3954  (best@80)
+  epoch 100  loss=1.1867  val_AP=0.4181  (best@100)
+  [图门控] λ1=0.177  λ2=0.161  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1294
+  [预训练] epoch 2/5  recon_loss=3.9590
+  [预训练] epoch 3/5  recon_loss=3.8643
+  [预训练] epoch 4/5  recon_loss=3.7767
+  [预训练] epoch 5/5  recon_loss=3.7259
+  epoch   1  loss=3.4472  val_AP=0.1101  (best@1)
+  epoch  20  loss=1.4031  val_AP=0.2122  (best@6)
+  epoch  40  loss=1.2951  val_AP=0.2600  (best@6)
+  epoch  60  loss=1.2113  val_AP=0.3170  (best@56)
+  epoch  80  loss=1.1648  val_AP=0.3986  (best@80)
+  epoch 100  loss=1.1312  val_AP=0.4058  (best@100)
+  [图门控] λ1=0.180  λ2=0.159  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1279
+  [预训练] epoch 2/5  recon_loss=3.9562
+  [预训练] epoch 3/5  recon_loss=3.8589
+  [预训练] epoch 4/5  recon_loss=3.7694
+  [预训练] epoch 5/5  recon_loss=3.7140
+  epoch   1  loss=3.4488  val_AP=0.1399  (best@1)
+  epoch  20  loss=1.4158  val_AP=0.1947  (best@5)
+  epoch  40  loss=1.3307  val_AP=0.2157  (best@5)
+  epoch  60  loss=1.2837  val_AP=0.2954  (best@60)
+  epoch  80  loss=1.2539  val_AP=0.3300  (best@79)
+  epoch 100  loss=1.2437  val_AP=0.3797  (best@100)
+
+>>> 训练模型: tgmlite_nossm (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1246
+  [预训练] epoch 2/5  recon_loss=3.9548
+  [预训练] epoch 3/5  recon_loss=3.8591
+  [预训练] epoch 4/5  recon_loss=3.7699
+  [预训练] epoch 5/5  recon_loss=3.7163
+  epoch   1  loss=3.4572  val_AP=0.0795  (best@1)
+  epoch  20  loss=1.3939  val_AP=0.2086  (best@5)
+  epoch  40  loss=1.2852  val_AP=0.2698  (best@40)
+  epoch  60  loss=1.2048  val_AP=0.3484  (best@58)
+  epoch  80  loss=1.1666  val_AP=0.4111  (best@80)
+  epoch 100  loss=1.1434  val_AP=0.4196  (best@99)
+  [图门控] λ1=0.179  λ2=0.159  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=47)
+  [预训练] epoch 1/5  recon_loss=4.1252
+  [预训练] epoch 2/5  recon_loss=3.9568
+  [预训练] epoch 3/5  recon_loss=3.8607
+  [预训练] epoch 4/5  recon_loss=3.7703
+  [预训练] epoch 5/5  recon_loss=3.7161
+  epoch   1  loss=3.4508  val_AP=0.1087  (best@1)
+  epoch  20  loss=1.3979  val_AP=0.2047  (best@5)
+  epoch  40  loss=1.2909  val_AP=0.2907  (best@40)
+  epoch  60  loss=1.2121  val_AP=0.3796  (best@60)
+  epoch  80  loss=1.1672  val_AP=0.3953  (best@79)
+  epoch 100  loss=1.1425  val_AP=0.3779  (best@81)
+  [图门控] λ1=0.178  λ2=0.160  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9192  0.4192  0.4401  0.4275  0.4534  0.7400       0.221/0.357/0.544     14.55        0    229.0
+mlp                13,080  0.9442  0.5018  0.5067  0.5404  0.4770  0.6600       0.289/0.413/0.601      0.41     1519   1742.8
+gcn                13,080  0.9593  0.5888  0.5809  0.5490  0.6167  0.8800       0.363/0.421/0.699      1.97     2847   2788.5
+evolvegcn          20,232  0.9594  0.5903  0.5739  0.4920  0.6886  0.9100       0.392/0.389/0.700      2.00     2847   2812.3
+tgmlite_nograph    65,832  0.9449  0.5212  0.5234  0.5021  0.5466  0.8300       0.316/0.393/0.639      0.44     1520   1736.8
+tgmlite_nossm      15,192  0.9610  0.6027  0.5373  0.6522  0.4568  0.9200       0.366/0.389/0.629      2.01     2847   2987.5
+tgmlite            65,832  0.9540  0.4076  0.2287  0.4198  0.1571  0.6400       0.340/0.396/0.088      2.02     2848   2893.0
+=============================================================================================================================
+
+######################################################################
+# 种子 48 (7/10)
+######################################################################
+
+>>> 训练模型: rf (seed=48)
+
+>>> 训练模型: mlp (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0938
+  [预训练] epoch 2/5  recon_loss=3.9852
+  [预训练] epoch 3/5  recon_loss=3.8644
+  [预训练] epoch 4/5  recon_loss=3.7461
+  [预训练] epoch 5/5  recon_loss=3.6424
+  epoch   1  loss=3.4778  val_AP=0.0931  (best@1)
+  epoch  20  loss=1.4327  val_AP=0.1939  (best@8)
+  epoch  40  loss=1.3600  val_AP=0.1909  (best@8)
+  epoch  60  loss=1.3028  val_AP=0.2623  (best@60)
+  epoch  80  loss=1.2697  val_AP=0.3303  (best@74)
+  epoch 100  loss=1.2567  val_AP=0.3623  (best@96)
+
+>>> 训练模型: gcn (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0872
+  [预训练] epoch 2/5  recon_loss=3.9841
+  [预训练] epoch 3/5  recon_loss=3.8662
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6490
+  epoch   1  loss=3.4902  val_AP=0.0725  (best@1)
+  epoch  20  loss=1.4121  val_AP=0.2272  (best@8)
+  epoch  40  loss=1.3131  val_AP=0.2237  (best@8)
+  epoch  60  loss=1.2431  val_AP=0.3599  (best@60)
+  epoch  80  loss=1.2099  val_AP=0.3983  (best@80)
+  epoch 100  loss=1.1953  val_AP=0.4138  (best@100)
+  [图门控] λ1=0.172  λ2=0.160  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0878
+  [预训练] epoch 2/5  recon_loss=3.9762
+  [预训练] epoch 3/5  recon_loss=3.8545
+  [预训练] epoch 4/5  recon_loss=3.7324
+  [预训练] epoch 5/5  recon_loss=3.6260
+  epoch   1  loss=3.5024  val_AP=0.1092  (best@1)
+  epoch  20  loss=1.4116  val_AP=0.2178  (best@17)
+  epoch  40  loss=1.2798  val_AP=0.2572  (best@40)
+  epoch  60  loss=1.1951  val_AP=0.3626  (best@59)
+  epoch  80  loss=1.1651  val_AP=0.3934  (best@80)
+  epoch 100  loss=1.1411  val_AP=0.4065  (best@100)
+  [图门控] λ1=0.169  λ2=0.159  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0919
+  [预训练] epoch 2/5  recon_loss=3.9754
+  [预训练] epoch 3/5  recon_loss=3.8470
+  [预训练] epoch 4/5  recon_loss=3.7166
+  [预训练] epoch 5/5  recon_loss=3.5970
+  epoch   1  loss=3.4766  val_AP=0.1104  (best@1)
+  epoch  20  loss=1.4409  val_AP=0.2002  (best@18)
+  epoch  40  loss=1.3562  val_AP=0.1949  (best@18)
+  epoch  60  loss=1.2891  val_AP=0.3151  (best@60)
+  epoch  80  loss=1.2657  val_AP=0.3376  (best@73)
+  epoch 100  loss=1.2491  val_AP=0.3698  (best@99)
+
+>>> 训练模型: tgmlite_nossm (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0849
+  [预训练] epoch 2/5  recon_loss=3.9751
+  [预训练] epoch 3/5  recon_loss=3.8514
+  [预训练] epoch 4/5  recon_loss=3.7250
+  [预训练] epoch 5/5  recon_loss=3.6125
+  epoch   1  loss=3.4962  val_AP=0.1029  (best@1)
+  epoch  20  loss=1.4142  val_AP=0.2288  (best@8)
+  epoch  40  loss=1.2867  val_AP=0.2528  (best@40)
+  epoch  60  loss=1.2100  val_AP=0.3852  (best@60)
+  epoch  80  loss=1.1689  val_AP=0.4018  (best@77)
+  epoch 100  loss=1.1360  val_AP=0.4117  (best@100)
+  [图门控] λ1=0.172  λ2=0.161  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=48)
+  [预训练] epoch 1/5  recon_loss=4.0851
+  [预训练] epoch 2/5  recon_loss=3.9738
+  [预训练] epoch 3/5  recon_loss=3.8482
+  [预训练] epoch 4/5  recon_loss=3.7191
+  [预训练] epoch 5/5  recon_loss=3.6033
+  epoch   1  loss=3.4871  val_AP=0.0976  (best@1)
+  epoch  20  loss=1.4199  val_AP=0.2316  (best@7)
+  epoch  40  loss=1.2962  val_AP=0.2508  (best@40)
+  epoch  60  loss=1.2355  val_AP=0.3863  (best@60)
+  epoch  80  loss=1.2044  val_AP=0.4111  (best@77)
+  epoch 100  loss=1.1787  val_AP=0.4273  (best@95)
+  [图门控] λ1=0.173  λ2=0.164  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9178  0.4193  0.4397  0.4282  0.4517  0.7600       0.215/0.351/0.545     14.95        0    259.6
+mlp                13,080  0.9445  0.5202  0.5160  0.4941  0.5398  0.8300       0.312/0.402/0.623      0.40     1519   1733.4
+gcn                13,080  0.9601  0.5853  0.5668  0.5363  0.6010  0.9200       0.353/0.412/0.681      1.98     2847   2757.0
+evolvegcn          20,232  0.9592  0.5564  0.5559  0.5496  0.5623  0.7900       0.375/0.415/0.665      1.99     2847   2801.6
+tgmlite_nograph    65,832  0.9445  0.5170  0.5170  0.4931  0.5432  0.7800       0.316/0.393/0.630      0.42     1520   1687.5
+tgmlite_nossm      15,192  0.9587  0.5724  0.4336  0.7727  0.3013  0.8500       0.291/0.322/0.501      1.97     2847   2766.9
+tgmlite            65,832  0.9597  0.6034  0.5751  0.5422  0.6122  0.9200       0.381/0.417/0.686      1.99     2848   2812.9
+=============================================================================================================================
+
+######################################################################
+# 种子 49 (8/10)
+######################################################################
+
+>>> 训练模型: rf (seed=49)
+
+>>> 训练模型: mlp (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1121
+  [预训练] epoch 2/5  recon_loss=3.9425
+  [预训练] epoch 3/5  recon_loss=3.8674
+  [预训练] epoch 4/5  recon_loss=3.7608
+  [预训练] epoch 5/5  recon_loss=3.6793
+  epoch   1  loss=3.2555  val_AP=0.1394  (best@1)
+  epoch  20  loss=1.4195  val_AP=0.1800  (best@20)
+  epoch  40  loss=1.3350  val_AP=0.2115  (best@40)
+  epoch  60  loss=1.2957  val_AP=0.3114  (best@60)
+  epoch  80  loss=1.2681  val_AP=0.3456  (best@80)
+  epoch 100  loss=1.2464  val_AP=0.3597  (best@100)
+
+>>> 训练模型: gcn (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1061
+  [预训练] epoch 2/5  recon_loss=3.9416
+  [预训练] epoch 3/5  recon_loss=3.8684
+  [预训练] epoch 4/5  recon_loss=3.7640
+  [预训练] epoch 5/5  recon_loss=3.6843
+  epoch   1  loss=3.2415  val_AP=0.1577  (best@1)
+  epoch  20  loss=1.3933  val_AP=0.2094  (best@5)
+  epoch  40  loss=1.3015  val_AP=0.2532  (best@40)
+  epoch  60  loss=1.2494  val_AP=0.3863  (best@59)
+  epoch  80  loss=1.2125  val_AP=0.4250  (best@78)
+  epoch 100  loss=1.1844  val_AP=0.4346  (best@99)
+  [图门控] λ1=0.174  λ2=0.162  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1079
+  [预训练] epoch 2/5  recon_loss=3.9374
+  [预训练] epoch 3/5  recon_loss=3.8597
+  [预训练] epoch 4/5  recon_loss=3.7496
+  [预训练] epoch 5/5  recon_loss=3.6621
+  epoch   1  loss=3.2444  val_AP=0.1649  (best@1)
+  epoch  20  loss=1.4087  val_AP=0.2010  (best@3)
+  epoch  40  loss=1.2716  val_AP=0.3027  (best@40)
+  epoch  60  loss=1.2062  val_AP=0.4019  (best@60)
+  epoch  80  loss=1.1638  val_AP=0.4109  (best@69)
+  epoch 100  loss=1.1280  val_AP=0.4094  (best@69)
+  [图门控] λ1=0.178  λ2=0.162  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1122
+  [预训练] epoch 2/5  recon_loss=3.9361
+  [预训练] epoch 3/5  recon_loss=3.8527
+  [预训练] epoch 4/5  recon_loss=3.7360
+  [预训练] epoch 5/5  recon_loss=3.6407
+  epoch   1  loss=3.2228  val_AP=0.1393  (best@1)
+  epoch  20  loss=1.4287  val_AP=0.1778  (best@20)
+  epoch  40  loss=1.3282  val_AP=0.2417  (best@40)
+  epoch  60  loss=1.2865  val_AP=0.3280  (best@58)
+  epoch  80  loss=1.2539  val_AP=0.3632  (best@76)
+  epoch 100  loss=1.2119  val_AP=0.3246  (best@85)
+
+>>> 训练模型: tgmlite_nossm (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1050
+  [预训练] epoch 2/5  recon_loss=3.9359
+  [预训练] epoch 3/5  recon_loss=3.8567
+  [预训练] epoch 4/5  recon_loss=3.7445
+  [预训练] epoch 5/5  recon_loss=3.6543
+  epoch   1  loss=3.2144  val_AP=0.1673  (best@1)
+  epoch  20  loss=1.4013  val_AP=0.2078  (best@8)
+  epoch  40  loss=1.2691  val_AP=0.3193  (best@40)
+  epoch  60  loss=1.2152  val_AP=0.4158  (best@60)
+  epoch  80  loss=1.1762  val_AP=0.4373  (best@80)
+  epoch 100  loss=1.1351  val_AP=0.4424  (best@92)
+  [图门控] λ1=0.175  λ2=0.162  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=49)
+  [预训练] epoch 1/5  recon_loss=4.1063
+  [预训练] epoch 2/5  recon_loss=3.9355
+  [预训练] epoch 3/5  recon_loss=3.8534
+  [预训练] epoch 4/5  recon_loss=3.7371
+  [预训练] epoch 5/5  recon_loss=3.6431
+  epoch   1  loss=3.2006  val_AP=0.1625  (best@1)
+  epoch  20  loss=1.3873  val_AP=0.2074  (best@3)
+  epoch  40  loss=1.2648  val_AP=0.2982  (best@40)
+  epoch  60  loss=1.2113  val_AP=0.3846  (best@60)
+  epoch  80  loss=1.1715  val_AP=0.4286  (best@80)
+  epoch 100  loss=1.1331  val_AP=0.4374  (best@92)
+  [图门控] λ1=0.175  λ2=0.161  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9162  0.4185  0.4479  0.4009  0.5073  0.7700       0.233/0.348/0.562     15.42        0    242.8
+mlp                13,080  0.9451  0.5095  0.5046  0.5400  0.4736  0.7500       0.275/0.410/0.602      0.40     1519   1672.1
+gcn                13,080  0.9605  0.6037  0.5790  0.5430  0.6201  0.9000       0.378/0.417/0.693      1.97     2847   2758.6
+evolvegcn          20,232  0.9581  0.5665  0.5667  0.5062  0.6437  0.8200       0.382/0.393/0.689      1.98     2847   2757.7
+tgmlite_nograph    65,832  0.9446  0.5272  0.5041  0.5747  0.4489  0.8600       0.279/0.422/0.595      0.42     1520   1640.3
+tgmlite_nossm      15,192  0.9585  0.5823  0.4323  0.7720  0.3002  0.9200       0.294/0.349/0.490      1.97     2847   2789.4
+tgmlite            65,832  0.9603  0.6023  0.5893  0.5471  0.6386  0.9000       0.374/0.433/0.706      2.00     2848   2796.8
+=============================================================================================================================
+
+######################################################################
+# 种子 50 (9/10)
+######################################################################
+
+>>> 训练模型: rf (seed=50)
+
+>>> 训练模型: mlp (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1260
+  [预训练] epoch 2/5  recon_loss=3.9777
+  [预训练] epoch 3/5  recon_loss=3.8764
+  [预训练] epoch 4/5  recon_loss=3.7693
+  [预训练] epoch 5/5  recon_loss=3.6747
+  epoch   1  loss=3.5636  val_AP=0.0658  (best@1)
+  epoch  20  loss=1.4014  val_AP=0.1859  (best@5)
+  epoch  40  loss=1.3129  val_AP=0.3065  (best@40)
+  epoch  60  loss=1.2855  val_AP=0.3278  (best@60)
+  epoch  80  loss=1.2687  val_AP=0.3537  (best@80)
+  epoch 100  loss=1.2539  val_AP=0.3651  (best@95)
+
+>>> 训练模型: gcn (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1249
+  [预训练] epoch 2/5  recon_loss=3.9814
+  [预训练] epoch 3/5  recon_loss=3.8833
+  [预训练] epoch 4/5  recon_loss=3.7797
+  [预训练] epoch 5/5  recon_loss=3.6900
+  epoch   1  loss=3.5687  val_AP=0.0810  (best@1)
+  epoch  20  loss=1.3629  val_AP=0.2130  (best@6)
+  epoch  40  loss=1.2607  val_AP=0.3505  (best@40)
+  epoch  60  loss=1.2275  val_AP=0.4025  (best@60)
+  epoch  80  loss=1.2033  val_AP=0.4200  (best@80)
+  epoch 100  loss=1.1857  val_AP=0.4290  (best@94)
+  [图门控] λ1=0.165  λ2=0.150  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1256
+  [预训练] epoch 2/5  recon_loss=3.9757
+  [预训练] epoch 3/5  recon_loss=3.8730
+  [预训练] epoch 4/5  recon_loss=3.7643
+  [预训练] epoch 5/5  recon_loss=3.6683
+  epoch   1  loss=3.5686  val_AP=0.1147  (best@1)
+  epoch  20  loss=1.3507  val_AP=0.2235  (best@3)
+  epoch  40  loss=1.2431  val_AP=0.3725  (best@40)
+  epoch  60  loss=1.1989  val_AP=0.3904  (best@53)
+  epoch  80  loss=1.1734  val_AP=0.3950  (best@75)
+  epoch 100  loss=1.1516  val_AP=0.4044  (best@94)
+  [图门控] λ1=0.163  λ2=0.145  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1246
+  [预训练] epoch 2/5  recon_loss=3.9683
+  [预训练] epoch 3/5  recon_loss=3.8574
+  [预训练] epoch 4/5  recon_loss=3.7395
+  [预训练] epoch 5/5  recon_loss=3.6318
+  epoch   1  loss=3.5735  val_AP=0.1257  (best@1)
+  epoch  20  loss=1.4056  val_AP=0.1833  (best@4)
+  epoch  40  loss=1.2983  val_AP=0.2997  (best@35)
+  epoch  60  loss=1.2799  val_AP=0.3236  (best@55)
+  epoch  80  loss=1.2515  val_AP=0.3319  (best@75)
+  epoch 100  loss=1.2208  val_AP=0.3049  (best@75)
+
+>>> 训练模型: tgmlite_nossm (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1256
+  [预训练] epoch 2/5  recon_loss=3.9760
+  [预训练] epoch 3/5  recon_loss=3.8731
+  [预训练] epoch 4/5  recon_loss=3.7639
+  [预训练] epoch 5/5  recon_loss=3.6655
+  epoch   1  loss=3.5834  val_AP=0.1299  (best@1)
+  epoch  20  loss=1.3435  val_AP=0.2234  (best@4)
+  epoch  40  loss=1.2285  val_AP=0.3648  (best@34)
+  epoch  60  loss=1.1979  val_AP=0.4132  (best@60)
+  epoch  80  loss=1.1703  val_AP=0.4135  (best@74)
+  epoch 100  loss=1.1524  val_AP=0.4132  (best@74)
+  [图门控] λ1=0.166  λ2=0.148  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=50)
+  [预训练] epoch 1/5  recon_loss=4.1236
+  [预训练] epoch 2/5  recon_loss=3.9725
+  [预训练] epoch 3/5  recon_loss=3.8659
+  [预训练] epoch 4/5  recon_loss=3.7524
+  [预训练] epoch 5/5  recon_loss=3.6501
+  epoch   1  loss=3.5882  val_AP=0.1561  (best@1)
+  epoch  20  loss=1.3548  val_AP=0.2165  (best@5)
+  epoch  40  loss=1.2239  val_AP=0.3641  (best@40)
+  epoch  60  loss=1.1962  val_AP=0.3863  (best@60)
+  epoch  80  loss=1.1708  val_AP=0.4176  (best@77)
+  epoch 100  loss=1.1524  val_AP=0.4165  (best@77)
+  [图门控] λ1=0.165  λ2=0.147  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9157  0.4194  0.4360  0.4253  0.4473  0.8100       0.207/0.345/0.543     14.69        0    236.0
+mlp                13,080  0.9426  0.5098  0.5018  0.5371  0.4708  0.7700       0.311/0.403/0.593      0.40     1519   1655.9
+gcn                13,080  0.9576  0.6056  0.5799  0.5379  0.6291  0.9400       0.374/0.416/0.697      1.96     2847   2820.8
+evolvegcn          20,232  0.9543  0.5514  0.5443  0.4679  0.6504  0.8800       0.369/0.378/0.665      1.98     2847   2807.8
+tgmlite_nograph    65,832  0.9437  0.4948  0.4888  0.5227  0.4590  0.7300       0.242/0.400/0.590      0.43     1520   1687.6
+tgmlite_nossm      15,192  0.9557  0.5732  0.5042  0.6751  0.4024  0.8900       0.363/0.405/0.576      1.97     2847   2790.7
+tgmlite            65,832  0.9452  0.3519  0.2168  0.3583  0.1554  0.5700       0.389/0.370/0.035      1.99     2848   2824.1
+=============================================================================================================================
+
+######################################################################
+# 种子 51 (10/10)
+######################################################################
+
+>>> 训练模型: rf (seed=51)
+
+>>> 训练模型: mlp (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1017
+  [预训练] epoch 2/5  recon_loss=3.9792
+  [预训练] epoch 3/5  recon_loss=3.8600
+  [预训练] epoch 4/5  recon_loss=3.7652
+  [预训练] epoch 5/5  recon_loss=3.6787
+  epoch   1  loss=3.8562  val_AP=0.0209  (best@1)
+  epoch  20  loss=1.4378  val_AP=0.1745  (best@7)
+  epoch  40  loss=1.3342  val_AP=0.1996  (best@7)
+  epoch  60  loss=1.2870  val_AP=0.3004  (best@55)
+  epoch  80  loss=1.2677  val_AP=0.3444  (best@78)
+  epoch 100  loss=1.2555  val_AP=0.3735  (best@100)
+
+>>> 训练模型: gcn (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0956
+  [预训练] epoch 2/5  recon_loss=3.9781
+  [预训练] epoch 3/5  recon_loss=3.8614
+  [预训练] epoch 4/5  recon_loss=3.7688
+  [预训练] epoch 5/5  recon_loss=3.6849
+  epoch   1  loss=3.8750  val_AP=0.0203  (best@1)
+  epoch  20  loss=1.4231  val_AP=0.2020  (best@7)
+  epoch  40  loss=1.2911  val_AP=0.2685  (best@40)
+  epoch  60  loss=1.2406  val_AP=0.3635  (best@60)
+  epoch  80  loss=1.2215  val_AP=0.3835  (best@79)
+  epoch 100  loss=1.1968  val_AP=0.4091  (best@100)
+  [图门控] λ1=0.170  λ2=0.168  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: evolvegcn (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0966
+  [预训练] epoch 2/5  recon_loss=3.9748
+  [预训练] epoch 3/5  recon_loss=3.8560
+  [预训练] epoch 4/5  recon_loss=3.7608
+  [预训练] epoch 5/5  recon_loss=3.6728
+  epoch   1  loss=3.8946  val_AP=0.0246  (best@1)
+  epoch  20  loss=1.3940  val_AP=0.2128  (best@7)
+  epoch  40  loss=1.2731  val_AP=0.3144  (best@40)
+  epoch  60  loss=1.2055  val_AP=0.3624  (best@60)
+  epoch  80  loss=1.1716  val_AP=0.3938  (best@80)
+  epoch 100  loss=1.1417  val_AP=0.4031  (best@100)
+  [图门控] λ1=0.166  λ2=0.165  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite_nograph (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.1009
+  [预训练] epoch 2/5  recon_loss=3.9708
+  [预训练] epoch 3/5  recon_loss=3.8464
+  [预训练] epoch 4/5  recon_loss=3.7448
+  [预训练] epoch 5/5  recon_loss=3.6471
+  epoch   1  loss=3.8978  val_AP=0.0258  (best@1)
+  epoch  20  loss=1.4315  val_AP=0.1818  (best@7)
+  epoch  40  loss=1.3043  val_AP=0.2650  (best@40)
+  epoch  60  loss=1.2522  val_AP=0.2922  (best@45)
+  epoch  80  loss=1.2318  val_AP=0.2908  (best@45)
+  epoch 100  loss=1.2171  val_AP=0.2969  (best@86)
+
+>>> 训练模型: tgmlite_nossm (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0970
+  [预训练] epoch 2/5  recon_loss=3.9729
+  [预训练] epoch 3/5  recon_loss=3.8540
+  [预训练] epoch 4/5  recon_loss=3.7582
+  [预训练] epoch 5/5  recon_loss=3.6688
+  epoch   1  loss=3.8918  val_AP=0.0182  (best@1)
+  epoch  20  loss=1.4048  val_AP=0.1992  (best@7)
+  epoch  40  loss=1.2734  val_AP=0.3461  (best@37)
+  epoch  60  loss=1.2073  val_AP=0.3780  (best@60)
+  epoch  80  loss=1.1770  val_AP=0.4043  (best@78)
+  epoch 100  loss=1.1499  val_AP=0.4127  (best@91)
+  [图门控] λ1=0.169  λ2=0.166  (λ→0=模型少用图; λ→1=重度用图)
+
+>>> 训练模型: tgmlite (seed=51)
+  [预训练] epoch 1/5  recon_loss=4.0949
+  [预训练] epoch 2/5  recon_loss=3.9706
+  [预训练] epoch 3/5  recon_loss=3.8491
+  [预训练] epoch 4/5  recon_loss=3.7503
+  [预训练] epoch 5/5  recon_loss=3.6562
+  epoch   1  loss=3.9085  val_AP=0.0220  (best@1)
+  epoch  20  loss=1.4077  val_AP=0.2183  (best@20)
+  epoch  40  loss=1.2757  val_AP=0.3179  (best@40)
+  epoch  60  loss=1.2162  val_AP=0.3383  (best@52)
+  epoch  80  loss=1.1846  val_AP=0.3764  (best@80)
+  epoch 100  loss=1.1603  val_AP=0.4044  (best@100)
+  [图门控] λ1=0.172  λ2=0.166  (λ→0=模型少用图; λ→1=重度用图)
+
+=============================================================================================================================
+model             #params     AUC      AP      F1       P       R   P@100          漂移F1(w1/w2/w3)   秒/epoch     显存MB     推理ms
+-----------------------------------------------------------------------------------------------------------------------------
+rf                      0  0.9179  0.4219  0.4490  0.4348  0.4641  0.7700       0.233/0.356/0.554     14.57        0    233.3
+mlp                13,080  0.9447  0.5082  0.5030  0.4762  0.5331  0.7700       0.301/0.392/0.610      0.40     1519   1664.0
+gcn                13,080  0.9604  0.5787  0.5684  0.5396  0.6004  0.8800       0.348/0.411/0.686      1.96     2847   2759.5
+evolvegcn          20,232  0.9578  0.5297  0.5346  0.5425  0.5269  0.7400       0.381/0.405/0.635      1.98     2847   2851.1
+tgmlite_nograph    65,832  0.9427  0.4487  0.4705  0.4466  0.4972  0.6400       0.281/0.370/0.570      0.42     1520   1678.8
+tgmlite_nossm      15,192  0.9582  0.5603  0.4147  0.7453  0.2873  0.8600       0.260/0.361/0.468      1.97     2847   2816.3
+tgmlite            65,832  0.9604  0.5751  0.5732  0.5420  0.6083  0.9000       0.372/0.400/0.694      1.99     2848   2884.7
+=============================================================================================================================
+[保存] 结果已写入 TGM-Lite_实验结果_supervised_amlsim_10s_seeds_raw.csv
+
+====================================================================================================
+多种子聚合 (mean±std)
+====================================================================================================
+model             n              AUC               AP               F1           w3漂移F1
+---------------------------------------------------------------------------------------
+rf               10    0.9171±0.0013    0.4191±0.0012    0.4434±0.0039    0.5499±0.0059
+mlp              10    0.9441±0.0008    0.5089±0.0073    0.5058±0.0083    0.6088±0.0142
+gcn              10    0.9595±0.0015    0.5922±0.0097    0.5736±0.0110    0.6903±0.0074
+evolvegcn        10    0.9569±0.0025    0.5447±0.0312    0.5225±0.0471    0.6233±0.0758
+tgmlite_nograph  10    0.9425±0.0040    0.4784±0.0645    0.4657±0.1047    0.5434±0.1822
+tgmlite_nossm    10    0.9581±0.0016    0.5720±0.0330    0.4240±0.0811    0.4802±0.1117
+tgmlite          10    0.9580±0.0047    0.5508±0.0871    0.5073±0.1424    0.5691±0.2542
+====================================================================================================
+[保存] 聚合结果已写入 TGM-Lite_实验结果_supervised_amlsim_10s_seeds.csv
