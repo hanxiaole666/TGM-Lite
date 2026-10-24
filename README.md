@@ -4,7 +4,7 @@
 
 > **TGM-Lite: A Drift-Gated Selective State-Space Temporal Graph Network for Stable Money Laundering Detection under Concept Drift**
 > Xiaole Han, Business School, Qilu Institute of Technology, Jinan, Shandong 250200, China
-> (submitted to *IEEE Transactions on Dependable and Secure Computing*)
+> (submitted to *IEEE Transactions on Information Forensics and Security*)
 
 TGM-Lite is a small (<100K parameters) temporal graph network for illicit-transaction
 detection. A selective state-space (SSM) controller evolves the GCN weights in a
@@ -332,7 +332,7 @@ reported in Section V-F (RQ6) as a boundary result.
   title   = {TGM-Lite: A Drift-Gated Selective State-Space Temporal Graph Network
              for Stable Money Laundering Detection under Concept Drift},
   author  = {Han, Xiaole},
-  journal = {IEEE Transactions on Dependable and Secure Computing},
+  journal = {IEEE Transactions on Information Forensics and Security},
   note    = {submitted},
   year    = {2026}
 }
@@ -342,14 +342,14 @@ reported in Section V-F (RQ6) as a boundary result.
 
 MIT (see `LICENSE`).
 
-### 增补实验包（2026-10-17，对应审稿增补实验清单 E4–E6）
+### Supplementary Experiment Package (October 17, 2026; corresponding to the list of supplementary experiments E4–E6)
 
 | 文件 | 作用 |
 |---|---|
-| `E4_公平外部基线_调参.bat` / `e4_select_lr.py` | 外部基线两阶段公平调参（lr 网格 × 3 seeds 试点 → val_AP 选参 → 10 seeds 正式）；`audit_external.py` CSV 已含 `val_ap` 列 |
-| `E5_地板感知对抗审计.bat` | `audit_adversarial.py --attacks evasion,drift,evasion_fz`：在 fz40 地板检查点上按已切除构型构造白盒逃逸（针对切除点的对手） |
-| `E6_轨迹审计与作图.bat` / `audit_trajectory.py` / `fig_trajectory.py` | 崩溃 vs 健康 seed 的 ‖U·diag(s_t)·V‖_F / max|s_t| 逐窗口轨迹 + 双面板图 |
-| `E4E5E6_手稿填入模板.md` | 三项结果的手稿 LaTeX 模板（占位符，跑完后填真实数字） |
-| `E2_配置与切分鲁棒性.bat` | E2：替代切分 + HI-Medium 配置 + 换生成器种子（CLI 原生） |
-| `E3_PaySim异源生成器.bat` / `paysim_adapter.py` | E3：PaySim→通用时序图 npz（排除余额列防标签伪迹），`experiments.py --data custom --custom_npz` 直接审计 |
-| `E2E3_手稿填入模板.md` | E2 附录小节 + E3 双分支（复现/不复现）手稿与 response letter 模板 |
+| `E4_公平外部基线_调参.bat` / `e4_select_lr.py` | Two-stage fair hyperparameter tuning using an external baseline (LR grid × 3 seeds for pilot testing → hyperparameter selection based on val_AP → 10 seeds for production)）；`audit_external.py` The CSV already contains the `val_ap` column |
+| `E5_地板感知对抗审计.bat` | `audit_adversarial.py --attacks evasion,drift,evasion_fz`：Construct a white-box escape at the fz40 floor checkpoint based on the removed configuration (for opponents at the removal point) |
+| `E6_轨迹审计与作图.bat` / `audit_trajectory.py` / `fig_trajectory.py` | Crash vs. Healthy Seed ‖U·diag(s_t)·V‖_F / max|s_t| Window-by-Window Trajectory + Dual-Panel Diagram |
+| `E4E5E6_手稿填入模板.md` | LaTeX template for three sets of results (placeholders; fill in the actual numbers after the calculations are complete) |
+| `E2_配置与切分鲁棒性.bat` | E2: Alternative Segmentation + HI-Medium Configuration + Change Generator Seed (CLI Native) |
+| `E3_PaySim异源生成器.bat` / `paysim_adapter.py` | E3：PaySim→General-Purpose Timing Diagram npz (Excluding the Balance Column to Prevent Label Artifacts)，`experiments.py --data custom --custom_npz` Direct Audit |
+| `E2E3_手稿填入模板.md` | E2 Appendix Subsection + E3 Dual-Branch (Reproducible/Non-Reproducible) Manuscript and response letter Template |
